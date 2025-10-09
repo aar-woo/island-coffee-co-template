@@ -32,31 +32,28 @@ export default function NavMenuItem({
     return (
       <NavMenuItemPrimitive className={cn(isVertical && "w-full")}>
         <NavigationMenuTrigger
-          className={cn(isVertical && "w-full justify-start")}
+          className={cn(
+            isVertical && "w-full justify-start flex items-center leading-none"
+          )}
         >
           {item.label}
         </NavigationMenuTrigger>
-        <NavigationMenuContent>
+        <NavigationMenuContent className={"z-50 absolute"}>
           <ul
             className={cn(
-              "gap-3 p-4",
-              isVertical
-                ? "w-full grid-cols-1"
-                : "grid w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]"
+              "flex flex-col wrap align-start gap-3 py-3",
+              isVertical ? "w-full" : "w-[250px] md:flex-row md:flex-wrap"
             )}
           >
             {item.children.map((child, childIndex) => (
-              <li key={childIndex}>
+              <li key={childIndex} className="w-full">
                 <NavigationMenuLink asChild>
-                  <Link
-                    href={child.href}
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
+                  <Link href={child.href}>
                     <div className="text-sm font-medium leading-none">
                       {child.label}
                     </div>
                     {child.description && (
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                      <p className="line-clamp-2 text-sm text-muted-foreground">
                         {child.description}
                       </p>
                     )}

@@ -19,6 +19,7 @@ export default function NavMenu({
   return (
     <NavigationMenu
       orientation={orientation}
+      viewport={orientation === "horizontal"}
       className={cn(
         orientation === "vertical" && "w-full !max-w-full block",
         className
