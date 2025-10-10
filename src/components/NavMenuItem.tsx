@@ -60,14 +60,16 @@ export default function NavMenuItem({
               const ChildIcon = child.icon;
               return (
                 <li key={childIndex} className="w-full">
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="group/child-link">
                     <Link
                       href={child.href}
                       className="flex items-start gap-2 p-3 text-sm leading-none rounded-md hover:bg-accent transition-colors"
                     >
                       <div className="flex-1">
                         <div className="flex items-center gap-2 font-medium no-wrap text-sm leading-none">
-                          {ChildIcon && <ChildIcon className="h-4 w-4" />}
+                          {ChildIcon && (
+                            <ChildIcon className="h-4 w-4 text-muted-foreground group-hover/child-link:text-foreground" />
+                          )}
                           {child.label}
                         </div>
                         {child.description && (
