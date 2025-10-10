@@ -1,25 +1,20 @@
 "use client";
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
-import { Home as HomeIcon, Package, Info, Coffee, CupSoda } from "lucide-react";
+import {
+  Home as HomeIcon,
+  Package,
+  Info,
+  Coffee,
+  CupSoda,
+  Mail,
+} from "lucide-react";
 
 const menuItems = [
   {
     label: "Home",
     href: "/",
     icon: HomeIcon,
-    children: [
-      {
-        label: "Coffee Beans",
-        href: "/products/beans",
-        description: "Premium single-origin beans",
-      },
-      {
-        label: "Brewing Equipment",
-        href: "/products/equipment",
-        description: "Quality brewing tools",
-      },
-    ],
   },
   { label: "About", href: "/about", icon: Info },
   {
@@ -43,18 +38,7 @@ const menuItems = [
   {
     label: "Contact",
     href: "/contact",
-    children: [
-      {
-        label: "Coffee Beans",
-        href: "/products/beans",
-        description: "Premium single-origin beans",
-      },
-      {
-        label: "Brewing Equipment",
-        href: "/products/equipment",
-        description: "Quality brewing tools",
-      },
-    ],
+    icon: Mail,
   },
 ];
 
@@ -62,7 +46,7 @@ export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <header className="w-full">
-        <NavBar menuItems={menuItems} />
+        <NavBar menuItems={menuItems} brandName="Island Coffee Co." />
       </header>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start"></main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">

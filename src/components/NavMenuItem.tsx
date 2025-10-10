@@ -39,12 +39,14 @@ export default function NavMenuItem({
       <NavMenuItemPrimitive className={cn(isVertical && "w-full")}>
         <NavigationMenuTrigger
           className={cn(
-            "leading-none",
+            "leading-none group/trigger",
             isVertical &&
-              "w-full justify-start no-wrap items-center leading-none text-sm"
+              "w-full justify-start no-wrap items-center leading-none"
           )}
         >
-          {Icon && <Icon className="mr-2 h-4 w-4" />}
+          {Icon && (
+            <Icon className="mr-2 h-4 w-4 text-muted-foreground transition-colors group-hover/trigger:text-foreground group-data-[state=open]/trigger:text-foreground" />
+          )}
           {item.label}
         </NavigationMenuTrigger>
         <NavigationMenuContent className={cn(isVertical && "z-50 absolute")}>
@@ -93,11 +95,13 @@ export default function NavMenuItem({
         <Link
           href={item.href || "#"}
           className={cn(
-            "px-4 py-2 font-medium inline-flex no-wrap flex-row items-center leading-none gap-2",
+            "group/link px-4 py-2 font-medium inline-flex no-wrap flex-row items-center leading-none gap-2",
             isVertical && "w-full justify-start"
           )}
         >
-          {Icon && <Icon className="h-4 w-4" />}
+          {Icon && (
+            <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover/link:text-foreground" />
+          )}
           {item.label}
         </Link>
       </NavigationMenuLink>
