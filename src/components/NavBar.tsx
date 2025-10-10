@@ -52,7 +52,11 @@ export default function NavBar({
               )}
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[200px]">
+          <SheetContent
+            side="right"
+            className="w-[200px]"
+            onOpenAutoFocus={(e) => e.preventDefault()}
+          >
             <SheetHeader>
               <SheetTitle>{brandName}</SheetTitle>
             </SheetHeader>
