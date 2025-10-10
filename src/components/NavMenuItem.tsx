@@ -6,14 +6,18 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Icon, LucideIcon } from "lucide-react";
 
 export interface MenuItemData {
   label: string;
   href?: string;
+  icon?: LucideIcon;
+
   children?: {
     label: string;
     href: string;
     description?: string;
+    icon?: LucideIcon;
   }[];
 }
 
@@ -29,43 +33,59 @@ export default function NavMenuItem({
   const isVertical = orientation === "vertical";
 
   if (item.children) {
+    const Icon = item.icon;
+
     return (
       <NavMenuItemPrimitive className={cn(isVertical && "w-full")}>
         <NavigationMenuTrigger
           className={cn(
-            isVertical && "w-full justify-start flex items-center leading-none"
+            "leading-none",
+            isVertical &&
+              "w-full justify-start no-wrap items-center leading-none text-sm"
           )}
         >
+          {Icon && <Icon className="mr-2 h-4 w-4" />}
           {item.label}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className={"z-50 absolute"}>
+        <NavigationMenuContent className={cn(isVertical && "z-50 absolute")}>
           <ul
             className={cn(
-              "flex flex-col wrap align-start gap-3 py-3",
-              isVertical ? "w-full" : "w-[250px] md:flex-row md:flex-wrap"
+              "flex flex-col wrap align-start gap-3 py-3 relative",
+              isVertical ? "w-full" : "w-[250px]"
             )}
           >
-            {item.children.map((child, childIndex) => (
-              <li key={childIndex} className="w-full">
-                <NavigationMenuLink asChild>
-                  <Link href={child.href}>
-                    <div className="text-sm font-medium leading-none">
-                      {child.label}
-                    </div>
-                    {child.description && (
-                      <p className="line-clamp-2 text-sm text-muted-foreground">
-                        {child.description}
-                      </p>
-                    )}
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            ))}
+            {item.children.map((child, childIndex) => {
+              const ChildIcon = child.icon;
+              return (
+                <li key={childIndex} className="w-full">
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={child.href}
+                      className="flex items-start gap-2 p-3 text-sm leading-none rounded-md hover:bg-accent transition-colors"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 font-medium no-wrap text-sm leading-none">
+                          {ChildIcon && <ChildIcon className="h-4 w-4" />}
+                          {child.label}
+                        </div>
+                        {child.description && (
+                          <p className="mt-1 line-clamp-2 text-muted-foreground">
+                            {child.description}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              );
+            })}
           </ul>
         </NavigationMenuContent>
       </NavMenuItemPrimitive>
     );
   }
+
+  const Icon = item.icon;
 
   return (
     <NavMenuItemPrimitive className={cn(isVertical && "w-full")}>
@@ -73,10 +93,11 @@ export default function NavMenuItem({
         <Link
           href={item.href || "#"}
           className={cn(
-            "px-4 py-2 font-medium",
-            isVertical && "w-full flex items-start "
+            "px-4 py-2 font-medium inline-flex no-wrap flex-row items-center leading-none gap-2",
+            isVertical && "w-full justify-start"
           )}
         >
+          {Icon && <Icon className="h-4 w-4" />}
           {item.label}
         </Link>
       </NavigationMenuLink>

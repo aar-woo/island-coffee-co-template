@@ -1,12 +1,13 @@
+"use client";
 import Image from "next/image";
-import NavMenu from "@/components/NavMenu";
 import NavBar from "@/components/NavBar";
+import { Home as HomeIcon, Package, Info, Coffee, CupSoda } from "lucide-react";
 
 const menuItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   {
-    label: "Products",
+    label: "Home",
+    href: "/",
+    icon: HomeIcon,
     children: [
       {
         label: "Coffee Beans",
@@ -20,7 +21,41 @@ const menuItems = [
       },
     ],
   },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about", icon: Info },
+  {
+    label: "Products",
+    children: [
+      {
+        label: "Coffee Beans",
+        href: "/products/beans",
+        description: "Premium single-origin beans",
+        icon: Coffee,
+      },
+      {
+        label: "Brewing Equipment",
+        href: "/products/equipment",
+        description: "Quality brewing tools",
+        icon: CupSoda,
+      },
+    ],
+    icon: Package,
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    children: [
+      {
+        label: "Coffee Beans",
+        href: "/products/beans",
+        description: "Premium single-origin beans",
+      },
+      {
+        label: "Brewing Equipment",
+        href: "/products/equipment",
+        description: "Quality brewing tools",
+      },
+    ],
+  },
 ];
 
 export default function Home() {
