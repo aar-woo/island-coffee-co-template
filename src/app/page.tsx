@@ -9,7 +9,7 @@ import {
   CupSoda,
   Mail,
 } from "lucide-react";
-import Hero from "@/components/ui/Hero";
+import Hero from "@/components/ui/Hero/Hero";
 
 const menuItems = [
   {

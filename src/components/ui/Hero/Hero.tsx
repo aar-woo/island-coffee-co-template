@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/base/button";
+import HeaderEnterAnimation, {
+  FadeInScale,
+} from "@/components/ui/animations/FadeInScale";
 
 type BackgroundType =
   | { type: "image"; src: string }
@@ -71,22 +74,24 @@ export default function Hero({
         style={{ opacity: overlayOpacity }}
       />
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-          {title}
-        </h1>
-        <p className="mt-6 text-lg text-gray-200 sm:text-xl md:text-2xl">
-          {subtitle}
-        </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Button asChild size="lg" variant="oval">
-            <Link href={primaryCta.href}>{primaryCta.label}</Link>
-          </Button>
-          {secondaryCta && (
+        <FadeInScale>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            {title}
+          </h1>
+          <p className="mt-6 text-lg text-gray-200 sm:text-xl md:text-2xl">
+            {subtitle}
+          </p>
+          <div className="mt-8 flex justify-center gap-4">
             <Button asChild size="lg" variant="oval">
-              <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+              <Link href={primaryCta.href}>{primaryCta.label}</Link>
             </Button>
-          )}
-        </div>
+            {secondaryCta && (
+              <Button asChild size="lg" variant="oval">
+                <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+              </Button>
+            )}
+          </div>
+        </FadeInScale>
       </div>
     </section>
   );
