@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/ui/NavBar/NavBar";
 import {
   Home as HomeIcon,
   Package,
@@ -9,7 +9,7 @@ import {
   CupSoda,
   Mail,
 } from "lucide-react";
-import Hero from "@/components/Hero";
+import Hero from "@/components/ui/Hero";
 
 const menuItems = [
   {
@@ -53,7 +53,10 @@ export default function Home() {
         <Hero
           title="Welcome to Island Coffee Co."
           subtitle="Discover premium coffee beans from around the world"
-          backgroundImage="/images/island-coffee-hero.jpg"
+          background={{
+            type: "video",
+            src: "/videos/coffee-shop.mp4",
+          }}
           primaryCta={{ label: "Shop Now", href: "/shop" }}
           secondaryCta={{ label: "Learn More", href: "/about" }}
         />
