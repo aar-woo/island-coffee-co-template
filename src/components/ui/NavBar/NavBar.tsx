@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/base/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import NavMenu from "@/components/NavMenu";
-import { type MenuItemData } from "@/components/NavMenuItem";
+} from "@/components/ui/base/sheet";
+import NavMenu from "@/components/ui/NavBar/NavMenu";
+import { type MenuItemData } from "@/components/ui/NavBar/NavMenuItem";
 import Link from "next/link";
 
 interface NavBarProps {
