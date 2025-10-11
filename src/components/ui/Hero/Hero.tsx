@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/base/button";
-import HeaderEnterAnimation, {
-  FadeInScale,
-} from "@/components/ui/animations/FadeInScale";
+import { FadeInScale } from "@/components/ui/animations/FadeInScale";
 
 type BackgroundType =
   | { type: "image"; src: string }

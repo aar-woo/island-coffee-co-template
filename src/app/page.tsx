@@ -52,7 +52,7 @@ export default function Home() {
       <main>
         <Hero
           title="Welcome to Island Coffee Co."
-          subtitle="Discover premium coffee beans from around the world"
+          subtitle="Discover premium coffee beans locally grown in Hawai'i"
           background={{
             type: "video",
             src: "/videos/coffee-shop.mp4",
