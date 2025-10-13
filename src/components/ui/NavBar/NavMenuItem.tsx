@@ -3,10 +3,10 @@ import {
   NavigationMenuItem as NavMenuItemPrimitive,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/base/navigation-menu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Icon, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 export interface MenuItemData {
   label: string;

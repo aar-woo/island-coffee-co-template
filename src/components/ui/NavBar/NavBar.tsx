@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/base/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import NavMenu from "@/components/NavMenu";
-import { type MenuItemData } from "@/components/NavMenuItem";
+} from "@/components/ui/base/sheet";
+import NavMenu from "@/components/ui/NavBar/NavMenu";
+import { type MenuItemData } from "@/components/ui/NavBar/NavMenuItem";
 import Link from "next/link";
 
 interface NavBarProps {
@@ -33,7 +33,7 @@ export default function NavBar({
     <nav
       className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className}`}
     >
-      <div className="flex h-16 items-center justify-between px-4">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href={brandHref} className="text-xl font-bold hover:opacity-80">
           {brandName}
         </Link>

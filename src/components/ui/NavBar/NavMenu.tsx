@@ -1,8 +1,10 @@
 import {
   NavigationMenu,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import NavMenuItem, { type MenuItemData } from "@/components/NavMenuItem";
+} from "@/components/ui/base/navigation-menu";
+import NavMenuItem, {
+  type MenuItemData,
+} from "@/components/ui/NavBar/NavMenuItem";
 import { cn } from "@/lib/utils";
 
 interface NavMenuProps {
