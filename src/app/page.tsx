@@ -10,6 +10,7 @@ import {
   Mail,
 } from "lucide-react";
 import Hero from "@/components/ui/Hero/Hero";
+import ServicesSection from "@/components/ui/Services/ServicesSection";
 
 const menuItems = [
   {
@@ -43,6 +44,36 @@ const menuItems = [
   },
 ];
 
+const services = [
+  {
+    image: {
+      src: "/images/island-coffee-hero.jpg",
+      alt: "Specialty coffee being brewed",
+    },
+    title: "Specialty Coffee",
+    subtitle:
+      "Experience the finest locally-sourced Hawaiian coffee beans, roasted to perfection with rich flavors and aromas.",
+  },
+  {
+    image: {
+      src: "/images/cafe-food.jpg",
+      alt: "Delicious pastries and food",
+    },
+    title: "Delicious Food",
+    subtitle:
+      "Pair your coffee with our selection of fresh pastries, sandwiches, and local Hawaiian treats made daily. You'll want to try everything on the menu.",
+  },
+  {
+    image: {
+      src: "/images/coffee-mug-merch.jpg",
+      alt: "Coffee merchandise and brewing equipment",
+    },
+    title: "Merchandise",
+    subtitle:
+      "Take home our premium brewing equipment, branded merchandise, and gift sets for the coffee lover in your life.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="font-sans">
@@ -59,6 +90,11 @@ export default function Home() {
           }}
           primaryCta={{ label: "Shop Now", href: "/shop" }}
           secondaryCta={{ label: "Learn More", href: "/about" }}
+        />
+        <ServicesSection
+          title="What We Offer"
+          description="Discover our range of premium coffee products, delicious food, and unique merchandise"
+          services={services}
         />
       </main>
       <footer className="flex gap-6 flex-wrap items-center justify-center py-8">
