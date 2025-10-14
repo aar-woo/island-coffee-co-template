@@ -88,36 +88,32 @@ export default function Footer({
     >
       <div className="my-10 px-4 sm:px-6 lg:px-8">
         {showMap && (
-          <div className="w-full lg:max-w-3xl mx-auto bg-muted/80 rounded-lg p-2 mb-8 ">
-            <div>
-              <h3 className="mb-4 text-center text-lg font-semibold">
-                Visit Us
-              </h3>
-              <div className="mx-auto">
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border bg-muted">
-                  {mapEmbedUrl ? (
-                    <iframe
-                      src={mapEmbedUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="absolute inset-0"
-                      title="Location map"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center">
-                      <div className="text-center">
-                        <MapPin className="mx-auto mb-2 h-12 w-12 text-muted-foreground" />
-                        <p className="text-sm text-muted-foreground">
-                          Map coming soon
-                        </p>
-                      </div>
+          <div>
+            <h3 className="mb-4 text-center text-lg font-semibold">Visit Us</h3>
+            <div className="w-full mx-auto bg-muted/80 rounded-lg p-4 mb-8 ">
+              <div className="relative lg:max-w-3xl mx-auto aspect-video w-full overflow-hidden rounded-lg border bg-muted">
+                {mapEmbedUrl ? (
+                  <iframe
+                    src={mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0"
+                    title="Location map"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <div className="text-center">
+                      <MapPin className="mx-auto mb-2 h-12 w-12 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground">
+                        Map coming soon
+                      </p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
