@@ -183,7 +183,7 @@ export default function Footer({
               </div>
             )}
           </div>
-          <div className="w-full lg:flex lg:flex-row lg:w-1/4 lg:justify-between lg:mr-20 space-y-4">
+          <div className="w-full lg:flex lg:flex-row-reverse lg:w-1/4 lg:justify-between lg:mr-20 space-y-4">
             {navigationLinks.map((section, index) => (
               <nav
                 key={index}
