@@ -35,7 +35,7 @@ export default function ServicesSection({
   services,
 }: ServicesSectionProps) {
   return (
-    <section className="w-full bg-background py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {(title || description) && (
           <FadeInScale>
@@ -53,10 +53,10 @@ export default function ServicesSection({
             </div>
           </FadeInScale>
         )}
-        <div className="flex flex-col gap-12 md:flex-row md:gap-8">
+        <div className="flex flex-col flex-wrap justify-center gap-12 md:flex-row md:gap-8">
           {services.map((service, index) => (
             <ScrollPopUp
-              className="flex-1"
+              className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)]"
               key={index}
               i={index}
               viewportAmount={0.2}

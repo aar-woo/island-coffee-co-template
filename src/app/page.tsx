@@ -72,6 +72,15 @@ const services = [
     subtitle:
       "Take home our premium brewing equipment, branded merchandise, and gift sets for the coffee lover in your life.",
   },
+  {
+    image: {
+      src: "/images/cafe-food.jpg",
+      alt: "Delicious pastries and food",
+    },
+    title: "Delicious Food",
+    subtitle:
+      "Pair your coffee with our selection of fresh pastries, sandwiches, and local Hawaiian treats made daily. You'll want to try everything on the menu.",
+  },
 ];
 
 export default function Home() {

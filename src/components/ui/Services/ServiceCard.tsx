@@ -60,7 +60,7 @@ export default function ServiceCard({
   );
 
   return (
-    <div className={cn("flex flex-1 flex-col", className)}>
+    <div className={cn("flex flex-col", className)}>
       <ContentImage
         src={image.src}
         alt={image.alt}
