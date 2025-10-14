@@ -15,6 +15,7 @@ import {
 import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
+import ImageCarousel from "@/components/ui/ImageCarousel/ImageCarousel";
 
 const menuItems = [
   {
@@ -87,6 +88,13 @@ const services = [
   },
 ];
 
+const images = [
+  { src: "/images/cafe-food.jpg", alt: "Cafe food" },
+  { src: "/images/coffee-mug-merch.jpg", alt: "Coffee mug" },
+  { src: "/images/island-coffee-hero.jpg", alt: "Island coffee" },
+  { src: "/images/island-coffee-hero.jpg", alt: "Island coffee" },
+];
+
 export default function Home() {
   return (
     <div className="font-sans">
@@ -109,6 +117,8 @@ export default function Home() {
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
           services={services}
         />
+
+        <ImageCarousel images={images} autoPlay={true} aspectRatio="video" />
       </main>
       <Footer
         brandName="Island Coffee Co."
