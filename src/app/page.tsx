@@ -118,7 +118,14 @@ export default function Home() {
           services={services}
         />
 
-        <ImageCarousel images={images} autoPlay={true} aspectRatio="video" />
+        <div className="max-w-4xl lg:max-w-7xl mx-auto">
+          <ImageCarousel
+            images={images}
+            autoPlay={true}
+            aspectRatio="video"
+            imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+          />
+        </div>
       </main>
       <Footer
         brandName="Island Coffee Co."

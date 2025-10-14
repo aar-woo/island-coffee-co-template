@@ -18,6 +18,12 @@ export interface ImageCarouselItem {
   alt: string;
 }
 
+export interface ImagesPerView {
+  mobile?: number;
+  tablet?: number;
+  desktop?: number;
+}
+
 export interface ImageCarouselProps {
   images: ImageCarouselItem[];
   autoPlay?: boolean;
@@ -26,16 +32,30 @@ export interface ImageCarouselProps {
   aspectRatio?: "square" | "video" | "portrait";
   showDots?: boolean;
   showArrows?: boolean;
+  imagesPerView?: ImagesPerView;
 }
+
+const getBasisClass = (count: number): string => {
+  const basisMap: Record<number, string> = {
+    1: "full",
+    2: "1/2",
+    3: "1/3",
+    4: "1/4",
+    5: "1/5",
+    6: "1/6",
+  };
+  return `basis-${basisMap[count] || "full"}`;
+};
 
 export default function ImageCarousel({
   images,
   autoPlay = true,
-  autoPlayInterval = 6000,
+  autoPlayInterval = 4000,
   className,
   aspectRatio = "video",
   showDots = true,
   showArrows = true,
+  imagesPerView = { mobile: 1, tablet: 2, desktop: 3 },
 }: ImageCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -58,6 +78,12 @@ export default function ImageCarousel({
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
+
+  // Build responsive basis classes
+  const mobileBasis = getBasisClass(imagesPerView.mobile || 1);
+  const tabletBasis = getBasisClass(imagesPerView.tablet || 2);
+  const desktopBasis = getBasisClass(imagesPerView.desktop || 3);
+  const basisClasses = `${mobileBasis} md:${tabletBasis} lg:${desktopBasis}`;
 
   const handleMouseEnter = () => {
     if (autoPlay) {
@@ -91,11 +117,11 @@ export default function ImageCarousel({
         setApi={setApi}
         className="w-full"
       >
-        <CarouselContent className="-ml-2 md:-ml-4">
+        <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem
               key={`${image.src}-${index}`}
-              className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+              className={basisClasses}
             >
               <ContentImage
                 src={image.src}
