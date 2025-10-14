@@ -5,6 +5,8 @@ interface Service {
   image: {
     src: string;
     alt: string;
+    aspectRatio?: "square" | "video" | "portrait";
+    objectPosition?: "center" | "top" | "bottom" | "left" | "right";
   };
   title: string;
   subtitle: string;
@@ -52,15 +54,15 @@ export default function ServicesSection({
         )}
         <div className="flex flex-col gap-12 md:flex-row md:gap-8">
           {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              image={service.image}
-              title={service.title}
-              subtitle={service.subtitle}
-              primaryCta={service.primaryCta}
-              secondaryCta={service.secondaryCta}
-              className="flex-1"
-            />
+            <FadeInScale key={index} className="flex-1">
+              <ServiceCard
+                image={service.image}
+                title={service.title}
+                subtitle={service.subtitle}
+                primaryCta={service.primaryCta}
+                secondaryCta={service.secondaryCta}
+              />
+            </FadeInScale>
           ))}
         </div>
       </div>
