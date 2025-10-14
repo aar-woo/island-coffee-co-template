@@ -79,7 +79,6 @@ export default function ImageCarousel({
     });
   }, [api]);
 
-  // Build responsive basis classes
   const mobileBasis = getBasisClass(imagesPerView.mobile || 1);
   const tabletBasis = getBasisClass(imagesPerView.tablet || 2);
   const desktopBasis = getBasisClass(imagesPerView.desktop || 3);
