@@ -60,7 +60,7 @@ export default function Footer({
   navigationLinks = [],
   socialLinks = [],
   businessInfo,
-  showNewsletter = true,
+  showNewsletter = false,
   showMap = false,
   mapEmbedUrl,
   copyrightText,
@@ -183,27 +183,29 @@ export default function Footer({
               </div>
             )}
           </div>
-          {navigationLinks.map((section, index) => (
-            <div key={index} className="space-y-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider">
-                {section.title}
-              </h3>
-              <ul className="space-y-3">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="w-full lg:flex lg:flex-row lg:w-1/4 lg:justify-between lg:mr-20 space-y-4">
+            {navigationLinks.map((section, index) => (
+              <div key={index} className="space-y-4">
+                <h3 className="text-sm font-semibold uppercase tracking-wider">
+                  {section.title}
+                </h3>
+                <ul className="space-y-3">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
           {showNewsletter && (
-            <div className="space-y-4">
+            <div className="space-y-4 w-full lg:w-1/4">
               <h3 className="text-sm font-semibold uppercase tracking-wider">
                 Newsletter
               </h3>
