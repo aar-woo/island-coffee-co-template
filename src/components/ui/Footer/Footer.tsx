@@ -105,14 +105,14 @@ export default function Footer({
                     title="Location map"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center">
+                  <address className="flex h-full items-center justify-center">
                     <div className="text-center">
                       <MapPin className="mx-auto mb-2 h-12 w-12 text-muted-foreground" />
                       <p className="text-sm text-muted-foreground">
                         Map coming soon
                       </p>
                     </div>
-                  </div>
+                  </address>
                 )}
               </div>
             </div>
@@ -131,13 +131,13 @@ export default function Footer({
             )}
             {businessInfo && (
               <div className="space-y-3 text-sm">
-                <div className="flex items-start gap-2">
+                <address className="flex items-start gap-2">
                   <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" />
                   <span className="text-muted-foreground">
                     {businessInfo.address}
                   </span>
-                </div>
-                <div className="flex items-center gap-2">
+                </address>
+                <address className="flex items-center gap-2">
                   <Phone className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
                   <a
                     href={`tel:${businessInfo.phone}`}
@@ -145,8 +145,8 @@ export default function Footer({
                   >
                     {businessInfo.phone}
                   </a>
-                </div>
-                <div className="flex items-center gap-2">
+                </address>
+                <address className="flex items-center gap-2">
                   <Mail className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
                   <a
                     href={`mailto:${businessInfo.email}`}
@@ -154,7 +154,7 @@ export default function Footer({
                   >
                     {businessInfo.email}
                   </a>
-                </div>
+                </address>
                 <div className="flex items-start gap-2">
                   <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" />
                   <span className="text-muted-foreground">
@@ -162,7 +162,7 @@ export default function Footer({
                   </span>
                 </div>
                 {socialLinks.length > 0 && (
-                  <div className="flex gap-3 pt-2">
+                  <nav className="flex gap-3 pt-2" aria-label="Social links">
                     {socialLinks.map((social, index) => {
                       const Icon = social.icon;
                       return (
@@ -178,14 +178,18 @@ export default function Footer({
                         </a>
                       );
                     })}
-                  </div>
+                  </nav>
                 )}
               </div>
             )}
           </div>
           <div className="w-full lg:flex lg:flex-row lg:w-1/4 lg:justify-between lg:mr-20 space-y-4">
             {navigationLinks.map((section, index) => (
-              <div key={index} className="space-y-4">
+              <nav
+                key={index}
+                className="space-y-4"
+                aria-label={`${section.title} navigation`}
+              >
                 <h3 className="text-sm font-semibold uppercase tracking-wider">
                   {section.title}
                 </h3>
@@ -201,7 +205,7 @@ export default function Footer({
                     </li>
                   ))}
                 </ul>
-              </div>
+              </nav>
             ))}
           </div>
           {showNewsletter && (
