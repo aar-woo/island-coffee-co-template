@@ -8,9 +8,13 @@ import {
   Coffee,
   CupSoda,
   Mail,
+  Facebook,
+  Instagram,
+  Twitter,
 } from "lucide-react";
 import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
+import Footer from "@/components/ui/Footer/Footer";
 
 const menuItems = [
   {
@@ -106,53 +110,62 @@ export default function Home() {
           services={services}
         />
       </main>
-      <footer className="flex gap-6 flex-wrap items-center justify-center py-8">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <Footer
+        brandName="Island Coffee Co."
+        brandHref="/"
+        tagline="Premium coffee beans locally grown in Hawai'i"
+        navigationLinks={[
+          {
+            title: "Products",
+            links: [
+              { label: "Coffee Beans", href: "/products/beans" },
+              { label: "Brewing Equipment", href: "/products/equipment" },
+              { label: "Merchandise", href: "/products/merch" },
+              { label: "Gift Sets", href: "/products/gifts" },
+            ],
+          },
+          {
+            title: "Company",
+            links: [
+              { label: "About Us", href: "/about" },
+              { label: "Our Story", href: "/story" },
+              { label: "Careers", href: "/careers" },
+              { label: "Contact", href: "/contact" },
+            ],
+          },
+        ]}
+        socialLinks={[
+          {
+            platform: "Facebook",
+            href: "https://facebook.com",
+            icon: Facebook,
+          },
+          {
+            platform: "Instagram",
+            href: "https://instagram.com",
+            icon: Instagram,
+          },
+          { platform: "Twitter", href: "https://twitter.com", icon: Twitter },
+          {
+            platform: "Email",
+            href: "mailto:hello@islandcoffee.com",
+            icon: Mail,
+          },
+        ]}
+        businessInfo={{
+          address: "123 Kona Coast Dr, Kailua-Kona, HI 96740",
+          phone: "(808) 555-0123",
+          email: "hello@islandcoffee.com",
+          hours: "Mon-Sat: 6am-6pm, Sun: 7am-5pm",
+        }}
+        showNewsletter={true}
+        showMap={true}
+        legalLinks={[
+          { label: "Privacy Policy", href: "/privacy" },
+          { label: "Terms of Service", href: "/terms" },
+          { label: "Cookie Policy", href: "/cookies" },
+        ]}
+      />
     </div>
   );
 }
