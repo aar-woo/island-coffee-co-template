@@ -28,7 +28,7 @@ export default function ScrollPopUp({
   children,
   i,
   className,
-  viewportAmount = 0.8,
+  viewportAmount = 0.4,
 }: ContentProps) {
   return (
     <motion.div

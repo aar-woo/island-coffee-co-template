@@ -1,5 +1,6 @@
 import ServiceCard from "./ServiceCard";
 import { FadeInScale } from "@/components/ui/animations/FadeInScale";
+import ScrollPopUp from "@/components/ui/animations/ScrollPopUp";
 
 interface Service {
   image: {
@@ -38,7 +39,7 @@ export default function ServicesSection({
       <div className="mx-auto max-w-7xl">
         {(title || description) && (
           <FadeInScale>
-            <div className="mb-12 text-center">
+            <div className="mb-8 text-center">
               {title && (
                 <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                   {title}
@@ -54,15 +55,22 @@ export default function ServicesSection({
         )}
         <div className="flex flex-col gap-12 md:flex-row md:gap-8">
           {services.map((service, index) => (
-            <FadeInScale key={index} className="flex-1">
+            <ScrollPopUp
+              className="flex-1"
+              key={index}
+              i={index}
+              viewportAmount={0.2}
+            >
               <ServiceCard
                 image={service.image}
                 title={service.title}
                 subtitle={service.subtitle}
                 primaryCta={service.primaryCta}
                 secondaryCta={service.secondaryCta}
+                key={index}
+                index={index}
               />
-            </FadeInScale>
+            </ScrollPopUp>
           ))}
         </div>
       </div>

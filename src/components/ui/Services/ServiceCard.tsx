@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/base/button";
 import ContentImage from "@/components/ui/ContentImage/ContentImage";
 import { cn } from "@/lib/utils";
+import ScrollPopUp from "../animations/ScrollPopUp";
 
 interface CtaButton {
   label: string;
@@ -21,6 +22,7 @@ interface ServiceCardProps {
   primaryCta?: CtaButton;
   secondaryCta?: CtaButton;
   className?: string;
+  index: number;
 }
 
 export default function ServiceCard({
@@ -30,33 +32,36 @@ export default function ServiceCard({
   primaryCta,
   secondaryCta,
   className,
+  index,
 }: ServiceCardProps) {
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div className={cn("flex flex-1 flex-col", className)}>
       <ContentImage
         src={image.src}
         alt={image.alt}
         aspectRatio={image.aspectRatio}
         objectPosition={image.objectPosition}
       />
-      <div className="mt-4 flex flex-col">
-        <h3 className="text-2xl font-bold text-foreground">{title}</h3>
-        <p className="mt-2 text-base text-muted-foreground">{subtitle}</p>
-        {(primaryCta || secondaryCta) && (
-          <div className="mt-4 flex flex-wrap gap-3">
-            {primaryCta && (
-              <Button asChild variant={primaryCta.variant || "default"}>
-                <Link href={primaryCta.href}>{primaryCta.label}</Link>
-              </Button>
-            )}
-            {secondaryCta && (
-              <Button asChild variant={secondaryCta.variant || "outline"}>
-                <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
-              </Button>
-            )}
-          </div>
-        )}
-      </div>
+      <ScrollPopUp i={index} key={index}>
+        <div className="mt-4 flex flex-col">
+          <h3 className="text-2xl font-bold text-foreground">{title}</h3>
+          <p className="mt-2 text-base text-muted-foreground">{subtitle}</p>
+          {(primaryCta || secondaryCta) && (
+            <div className="mt-4 flex flex-wrap gap-3">
+              {primaryCta && (
+                <Button asChild variant={primaryCta.variant || "default"}>
+                  <Link href={primaryCta.href}>{primaryCta.label}</Link>
+                </Button>
+              )}
+              {secondaryCta && (
+                <Button asChild variant={secondaryCta.variant || "outline"}>
+                  <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </ScrollPopUp>
     </div>
   );
 }
