@@ -13,7 +13,6 @@ export function FadeInScale({
   duration = 0.4,
   ...motionProps
 }: FadeInScaleProps) {
-  console.log("motionProps", motionProps);
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
