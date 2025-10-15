@@ -11,11 +11,11 @@ interface ContentProps {
 
 const cardVariants: Variants = {
   offscreen: {
-    y: 50,
+    y: 30,
     opacity: 0.5,
   },
   hidden: {
-    y: 50,
+    y: 30,
     opacity: 0,
   },
   onscreen: {
