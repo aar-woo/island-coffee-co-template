@@ -59,6 +59,7 @@ export default function ContentImage({
         <HoverCard
           header={hover.header}
           content={hover.content}
+          className={hover.className}
           side={hover.side}
           align={hover.align}
           sideOffset={hover.sideOffset}

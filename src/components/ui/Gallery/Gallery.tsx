@@ -17,12 +17,9 @@ const secondCarouselImages = [
     src: "/images/coffee-cup-1.jpg",
     alt: "Island coffee",
     hover: {
-      header: (
-        <div className="flex items-start gap-2 ">
-          <Coffee />
-          <h3>Island Coffee Co. signature blend</h3>
-        </div>
-      ),
+      header: <Coffee />,
+      content: "Island Coffee Co. signature blend",
+      className: "text-center flex flex-col items-center",
     },
   },
   {
