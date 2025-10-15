@@ -2,6 +2,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import HoverCard from "../HoverCard/HoverCard";
 import { HoverCardProps } from "../HoverCard/HoverCard";
+import { Pointer } from "lucide-react";
 
 interface ContentImageProps {
   src: string;
@@ -66,7 +67,26 @@ export default function ContentImage({
           openDelay={hover.openDelay}
           closeDelay={hover.closeDelay}
         >
-          {imageElement}
+          <div
+            tabIndex={0}
+            role="button"
+            aria-haspopup="dialog"
+            aria-label={
+              hover?.header
+                ? `More info:
+               ${hover?.header} - ${alt}`
+                : alt
+            }
+            className="group relative h-full w-full cursor-pointer outline-none focus:ring-2 focus:ring-primary/50"
+          >
+            {imageElement}
+            <span
+              className="pointer-events-none absolute right-2 top-2 rounded-full bg-black/60 p-1 text-[10px] text-white opacity-30 transition-opacity delay-300 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <Pointer size={18} />
+            </span>
+          </div>
         </HoverCard>
       ) : (
         imageElement
