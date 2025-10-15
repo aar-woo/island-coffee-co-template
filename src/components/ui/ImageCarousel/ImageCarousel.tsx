@@ -12,11 +12,10 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/base/carousel";
+import { HoverCardProps } from "@/components/ui/HoverCard/HoverCard";
 
 export interface ImageCarouselItem {
-  hover?:
-    | { content?: string | undefined; header?: string | undefined }
-    | undefined;
+  hover?: HoverCardProps;
   src: string;
   alt: string;
 }

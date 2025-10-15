@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import HoverCard from "../HoverCard/HoverCard";
+import { HoverCardProps } from "../HoverCard/HoverCard";
 
 interface ContentImageProps {
   src: string;
@@ -9,10 +10,7 @@ interface ContentImageProps {
   objectPosition?: "center" | "top" | "bottom" | "left" | "right";
   className?: string;
   priority?: boolean;
-  hover?: {
-    content?: string;
-    header?: string;
-  };
+  hover?: HoverCardProps;
 }
 
 const aspectRatioClasses = {
@@ -58,7 +56,15 @@ export default function ContentImage({
       )}
     >
       {hover ? (
-        <HoverCard header={hover.header} content={hover.content}>
+        <HoverCard
+          header={hover.header}
+          content={hover.content}
+          side={hover.side}
+          align={hover.align}
+          sideOffset={hover.sideOffset}
+          openDelay={hover.openDelay}
+          closeDelay={hover.closeDelay}
+        >
           {imageElement}
         </HoverCard>
       ) : (

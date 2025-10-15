@@ -1,3 +1,4 @@
+import { Coffee, EggFried } from "lucide-react";
 import ImageCarousel from "../ImageCarousel/ImageCarousel";
 
 const firstCarouselImages = [
@@ -12,7 +13,18 @@ const secondCarouselImages = [
   { src: "/images/cafe-food.jpg", alt: "Cafe food" },
   { src: "/images/cafe-sea-side-table.jpg", alt: "Coffee mug" },
   { src: "/images/coffee-by-the-sea-1.jpg", alt: "Island coffee" },
-  { src: "/images/coffee-cup-1.jpg", alt: "Island coffee" },
+  {
+    src: "/images/coffee-cup-1.jpg",
+    alt: "Island coffee",
+    hover: {
+      header: (
+        <div className="flex items-start gap-2 ">
+          <Coffee />
+          <h3>Island Coffee Co. signature blend</h3>
+        </div>
+      ),
+    },
+  },
   {
     src: "/images/pancakes-breakfast.jpg",
     alt: "Island coffee",
