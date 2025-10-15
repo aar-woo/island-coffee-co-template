@@ -82,6 +82,8 @@ export default function ImageCarousel({
     Autoplay({
       delay: autoPlayInterval,
       stopOnInteraction: true,
+      stopOnMouseEnter: false,
+      rootNode: (emblaRoot) => emblaRoot.parentElement,
     })
   );
 
@@ -123,13 +125,16 @@ export default function ImageCarousel({
       className={cn("w-full my-10", className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      dir={direction}
     >
       <Carousel
         opts={{
-          align: "start",
+          // align: direction === "rtl" ? "end" : "start",
           loop: true,
           slidesToScroll: 1,
           direction: direction,
+          watchDrag: true,
+          skipSnaps: false,
         }}
         plugins={autoPlay ? [autoplayPlugin.current] : []}
         setApi={setApi}
