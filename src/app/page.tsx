@@ -18,6 +18,7 @@ import Gallery from "@/components/ui/Gallery/Gallery";
 import AboutSection, {
   ContentBlockData,
 } from "@/components/ui/About/AboutSection";
+import Parallax from "@/components/ui/Parallax/Parallax";
 
 const menuItems = [
   {
@@ -156,6 +157,8 @@ export default function Home() {
           primaryCta={{ label: "Shop Now", href: "/shop" }}
           secondaryCta={{ label: "Learn More", href: "/about" }}
         />
+        <Parallax />
+
         <ServicesSection
           title="What We Offer"
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
