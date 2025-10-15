@@ -38,20 +38,18 @@ export default function AboutSection({
     <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {(title || description) && (
-          <FadeInScale>
-            <div className="mb-12 text-center">
-              {title && (
-                <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  {title}
-                </h2>
-              )}
-              {description && (
-                <p className="mt-4 text-lg text-muted-foreground">
-                  {description}
-                </p>
-              )}
-            </div>
-          </FadeInScale>
+          <div className="mb-12 text-center">
+            {title && (
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p className="mt-4 text-lg text-muted-foreground">
+                {description}
+              </p>
+            )}
+          </div>
         )}
         <div className="space-y-16">
           {contentBlocks.map((block, index) => (
