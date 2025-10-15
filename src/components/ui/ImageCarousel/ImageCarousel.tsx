@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/base/carousel";
 
 export interface ImageCarouselItem {
+  hover?:
+    | { content?: string | undefined; header?: string | undefined }
+    | undefined;
   src: string;
   alt: string;
 }
@@ -150,6 +153,7 @@ export default function ImageCarousel({
                 alt={image.alt}
                 aspectRatio={aspectRatio}
                 priority={false}
+                hover={image.hover}
               />
             </CarouselItem>
           ))}

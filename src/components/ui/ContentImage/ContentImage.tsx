@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import HoverCard from "../HoverCard/HoverCard";
 
 interface ContentImageProps {
   src: string;
@@ -8,6 +9,10 @@ interface ContentImageProps {
   objectPosition?: "center" | "top" | "bottom" | "left" | "right";
   className?: string;
   priority?: boolean;
+  hover?: {
+    content?: string;
+    header?: string;
+  };
 }
 
 const aspectRatioClasses = {
@@ -31,7 +36,19 @@ export default function ContentImage({
   objectPosition = "center",
   className,
   priority = false,
+  hover,
 }: ContentImageProps) {
+  const imageElement = (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      priority={priority}
+      className={cn("object-cover", objectPositionClasses[objectPosition])}
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    />
+  );
+
   return (
     <div
       className={cn(
@@ -40,14 +57,13 @@ export default function ContentImage({
         className
       )}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        className={cn("object-cover", objectPositionClasses[objectPosition])}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
+      {hover ? (
+        <HoverCard header={hover.header} content={hover.content}>
+          {imageElement}
+        </HoverCard>
+      ) : (
+        imageElement
+      )}
     </div>
   );
 }

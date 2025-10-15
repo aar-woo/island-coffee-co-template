@@ -13,7 +13,15 @@ const secondCarouselImages = [
   { src: "/images/cafe-sea-side-table.jpg", alt: "Coffee mug" },
   { src: "/images/coffee-by-the-sea-1.jpg", alt: "Island coffee" },
   { src: "/images/coffee-cup-1.jpg", alt: "Island coffee" },
-  { src: "/images/pancakes-breakfast.jpg", alt: "Island coffee" },
+  {
+    src: "/images/pancakes-breakfast.jpg",
+    alt: "Island coffee",
+    hover: {
+      header: "Almond Macadamia Pancakes",
+      content:
+        "One of our most popular breakfast items, served with a side of our signature maple syrup.",
+    },
+  },
 ];
 
 export default function Gallery() {
@@ -30,7 +38,6 @@ export default function Gallery() {
           autoPlay={true}
           aspectRatio="video"
           showArrows={false}
-          // showDots={false}
           imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
         />
         <ImageCarousel
@@ -39,7 +46,6 @@ export default function Gallery() {
           direction="rtl"
           aspectRatio="video"
           showArrows={false}
-          // showDots={false}
           imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
         />
       </div>
