@@ -14,8 +14,10 @@ import {
 import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
-import ImageCarousel from "@/components/ui/ImageCarousel/ImageCarousel";
 import Gallery from "@/components/ui/Gallery/Gallery";
+import AboutSection, {
+  ContentBlockData,
+} from "@/components/ui/About/AboutSection";
 
 const menuItems = [
   {
@@ -86,6 +88,57 @@ const images = [
   { src: "/images/island-coffee-hero.jpg", alt: "Island coffee" },
 ];
 
+const contentBlocks: ContentBlockData[] = [
+  {
+    image: {
+      src: "/images/coffee-farm.jpg",
+      alt: "Our coffee farm in Hawaii",
+      aspectRatio: "video",
+      objectPosition: "center",
+    },
+    title: "Our Story",
+    description:
+      "Founded in 2010, Island Coffee Co. started as a small family farm with a passion for growing exceptional coffee. Today, we maintain that same dedication to quality while sharing our love of Hawaiian coffee with the world.",
+    primaryCta: {
+      label: "Learn More",
+      href: "/our-story",
+      variant: "default",
+    },
+  },
+  {
+    image: {
+      src: "/images/coffee-roasting-machine.jpg",
+      alt: "Coffee roasting process",
+      aspectRatio: "video",
+      objectPosition: "center",
+    },
+    title: "Farm to Cup",
+    description:
+      "We control every step of the process - from carefully cultivating our coffee plants to roasting the beans to perfection. This hands-on approach ensures the highest quality in every cup.",
+    primaryCta: {
+      label: "Our Process",
+      href: "/process",
+      variant: "default",
+    },
+  },
+  {
+    image: {
+      src: "/images/cafe-workers.jpg",
+      alt: "Coffee shop community",
+      aspectRatio: "video",
+      objectPosition: "center",
+    },
+    title: "Community First",
+    description:
+      "More than just a coffee company, we're proud to be part of the local Hawaiian community. We work closely with local farmers and businesses, creating sustainable partnerships that benefit our entire island.",
+    primaryCta: {
+      label: "Join Us",
+      href: "/community",
+      variant: "default",
+    },
+  },
+];
+
 export default function Home() {
   return (
     <div className="font-sans">
@@ -107,6 +160,11 @@ export default function Home() {
           title="What We Offer"
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
           services={services}
+        />
+        <AboutSection
+          title="About Us"
+          description="We are a small team of coffee lovers who are passionate about coffee and the community"
+          contentBlocks={contentBlocks}
         />
         <Gallery />
       </main>
