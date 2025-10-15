@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import NavBar from "@/components/ui/NavBar/NavBar";
 import {
   Home as HomeIcon,
@@ -16,6 +15,7 @@ import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
 import ImageCarousel from "@/components/ui/ImageCarousel/ImageCarousel";
+import Gallery from "@/components/ui/Gallery/Gallery";
 
 const menuItems = [
   {
@@ -77,15 +77,6 @@ const services = [
     subtitle:
       "Take home our premium brewing equipment, branded merchandise, and gift sets for the coffee lover in your life.",
   },
-  {
-    image: {
-      src: "/images/cafe-food.jpg",
-      alt: "Delicious pastries and food",
-    },
-    title: "Delicious Food",
-    subtitle:
-      "Pair your coffee with our selection of fresh pastries, sandwiches, and local Hawaiian treats made daily. You'll want to try everything on the menu.",
-  },
 ];
 
 const images = [
@@ -117,15 +108,7 @@ export default function Home() {
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
           services={services}
         />
-
-        <div className="max-w-4xl lg:max-w-7xl mx-auto">
-          <ImageCarousel
-            images={images}
-            autoPlay={true}
-            aspectRatio="video"
-            imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-          />
-        </div>
+        <Gallery />
       </main>
       <Footer
         brandName="Island Coffee Co."

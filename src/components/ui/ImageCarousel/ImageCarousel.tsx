@@ -129,7 +129,6 @@ export default function ImageCarousel({
     >
       <Carousel
         opts={{
-          // align: direction === "rtl" ? "end" : "start",
           loop: true,
           slidesToScroll: 1,
           direction: direction,
