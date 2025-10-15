@@ -33,18 +33,34 @@ export interface ImageCarouselProps {
   showDots?: boolean;
   showArrows?: boolean;
   imagesPerView?: ImagesPerView;
+  direction?: "ltr" | "rtl";
 }
-
-const getBasisClass = (count: number): string => {
-  const basisMap: Record<number, string> = {
-    1: "full",
-    2: "1/2",
-    3: "1/3",
-    4: "1/4",
-    5: "1/5",
-    6: "1/6",
-  };
-  return `basis-${basisMap[count] || "full"}`;
+// Responsive basis classes - complete strings for Tailwind detection
+const BASIS_CLASSES = {
+  mobile: [
+    "basis-full",
+    "basis-1/2",
+    "basis-1/3",
+    "basis-1/4",
+    "basis-1/5",
+    "basis-1/6",
+  ],
+  tablet: [
+    "md:basis-full",
+    "md:basis-1/2",
+    "md:basis-1/3",
+    "md:basis-1/4",
+    "md:basis-1/5",
+    "md:basis-1/6",
+  ],
+  desktop: [
+    "lg:basis-full",
+    "lg:basis-1/2",
+    "lg:basis-1/3",
+    "lg:basis-1/4",
+    "lg:basis-1/5",
+    "lg:basis-1/6",
+  ],
 };
 
 export default function ImageCarousel({
@@ -56,6 +72,7 @@ export default function ImageCarousel({
   showDots = true,
   showArrows = true,
   imagesPerView = { mobile: 1, tablet: 2, desktop: 3 },
+  direction = "ltr",
 }: ImageCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -79,10 +96,11 @@ export default function ImageCarousel({
     });
   }, [api]);
 
-  const mobileBasis = getBasisClass(imagesPerView.mobile || 1);
-  const tabletBasis = getBasisClass(imagesPerView.tablet || 2);
-  const desktopBasis = getBasisClass(imagesPerView.desktop || 3);
-  const basisClasses = `${mobileBasis} md:${tabletBasis} lg:${desktopBasis}`;
+  const basisClasses = cn(
+    BASIS_CLASSES.mobile[(imagesPerView.mobile || 1) - 1],
+    BASIS_CLASSES.tablet[(imagesPerView.tablet || 2) - 1],
+    BASIS_CLASSES.desktop[(imagesPerView.desktop || 3) - 1]
+  );
 
   const handleMouseEnter = () => {
     if (autoPlay) {
@@ -111,6 +129,7 @@ export default function ImageCarousel({
           align: "start",
           loop: true,
           slidesToScroll: 1,
+          direction: direction,
         }}
         plugins={autoPlay ? [autoplayPlugin.current] : []}
         setApi={setApi}
