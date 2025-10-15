@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import ContentImage from "@/components/ui/ContentImage/ContentImage";
 
@@ -72,31 +72,38 @@ function StyleSheet() {
   );
 }
 
-// function Image({ id }: { id: number }) {
-//   return (
-//     <section className="img-container">
-//       <div>
-//         <img
-//           src={`/images/coffee-shop-atmosphere-1.jpg`}
-//           alt="A coffee shop atmosphere"
-//         />
-//       </div>
-//     </section>
-//   );
-// }
+function ParallaxImage({ id }: { id: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  const y = useParallax(scrollYProgress, 300);
+
+  return (
+    <section className="img-container">
+      <div ref={ref}>
+        <ContentImage
+          src={`/images/coffee-shop-atmosphere-1.jpg`}
+          alt="A coffee shop atmosphere"
+          aspectRatio="portrait"
+        />
+      </div>
+      <motion.h2
+        initial={{ visibility: "hidden" }}
+        animate={{ visibility: "visible" }}
+        style={{ y }}
+      >{`#00${id}`}</motion.h2>
+    </section>
+  );
+}
+
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 export default function Parallax() {
   return (
     <div id="example">
       {[1, 2, 3, 4, 5].map((image) => (
-        <div className="img-container" key={image}>
-          <ContentImage
-            key={image}
-            src={`/images/coffee-shop-atmosphere-1.jpg`}
-            alt="A coffee shop atmosphere"
-          />
-          <h2>{`#00${image}`}</h2>
-        </div>
+        <ParallaxImage key={image} id={image} />
       ))}
       <div className="progress" />
       <StyleSheet />
