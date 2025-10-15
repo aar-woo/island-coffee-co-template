@@ -22,7 +22,7 @@ interface ServiceCardProps {
   secondaryCta?: CtaButton;
   className?: string;
   index: number;
-  AnimationWrapper?: React.ComponentType<{
+  TextAnimationWrapper?: React.ComponentType<{
     children: React.ReactNode;
     i: number;
   }>;
@@ -36,7 +36,7 @@ export default function ServiceCard({
   secondaryCta,
   className,
   index,
-  AnimationWrapper,
+  TextAnimationWrapper,
 }: ServiceCardProps) {
   const content = (
     <div className="mt-4 flex flex-col">
@@ -67,8 +67,8 @@ export default function ServiceCard({
         aspectRatio={image.aspectRatio}
         objectPosition={image.objectPosition}
       />
-      {AnimationWrapper ? (
-        <AnimationWrapper i={index}>{content}</AnimationWrapper>
+      {TextAnimationWrapper ? (
+        <TextAnimationWrapper i={index}>{content}</TextAnimationWrapper>
       ) : (
         content
       )}

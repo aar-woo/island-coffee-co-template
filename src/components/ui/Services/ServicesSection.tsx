@@ -69,7 +69,7 @@ export default function ServicesSection({
                 secondaryCta={service.secondaryCta}
                 key={index}
                 index={index}
-                AnimationWrapper={ScrollPopUp}
+                TextAnimationWrapper={ScrollPopUp}
               />
             </ScrollPopUp>
           ))}

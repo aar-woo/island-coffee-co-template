@@ -5,12 +5,17 @@ interface ContentProps {
   children: React.ReactNode;
   i: number;
   className?: string;
+  initial?: "offscreen" | "hidden";
   viewportAmount?: number;
 }
 
 const cardVariants: Variants = {
   offscreen: {
-    y: 50,
+    y: 30,
+    opacity: 0.5,
+  },
+  hidden: {
+    y: 30,
     opacity: 0,
   },
   onscreen: {
@@ -29,11 +34,12 @@ export default function ScrollPopUp({
   i,
   className,
   viewportAmount = 0.4,
+  initial = "hidden",
 }: ContentProps) {
   return (
     <motion.div
       className={`card-container-${i} ${className}`}
-      initial="offscreen"
+      initial={initial}
       whileInView="onscreen"
       viewport={{ amount: viewportAmount }}
     >
