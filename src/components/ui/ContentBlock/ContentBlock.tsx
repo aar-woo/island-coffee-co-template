@@ -44,15 +44,6 @@ export default function ContentBlock({
   const hasCtas = primaryCta || secondaryCta;
   const isImageLeft = imagePosition === "left";
 
-  const imageElement = (
-    <ContentImage
-      src={image.src}
-      alt={image.alt}
-      aspectRatio={image.aspectRatio}
-      objectPosition={image.objectPosition}
-    />
-  );
-  // Render text content inline with conditional animation wrapper
   const renderTextContent = () => (
     <div className="flex flex-col justify-center">
       <h3 className="text-2xl font-bold text-foreground mb-4">{title}</h3>
