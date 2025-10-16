@@ -173,7 +173,7 @@ const parallaxImages = [
 export default function Home() {
   return (
     <div className="font-sans">
-      <header>
+      <header className="sticky top-0 z-50">
         <NavBar menuItems={menuItems} brandName="Island Coffee Co." />
       </header>
       <main>

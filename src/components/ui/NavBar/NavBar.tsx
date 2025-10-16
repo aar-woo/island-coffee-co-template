@@ -13,8 +13,37 @@ import {
 import NavMenu from "@/components/ui/NavBar/NavMenu";
 import { type MenuItemData } from "@/components/ui/NavBar/NavMenuItem";
 import Link from "next/link";
+import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-interface NavBarProps {
+const navBarVariants = cva("sticky top-0 z-50 w-full border-b transition-all", {
+  variants: {
+    variant: {
+      default:
+        "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+      solid: "bg-background",
+      glass: "bg-transparent border-transparent backdrop-blur-sm",
+      dark: "bg-slate-950 text-white backdrop-blur",
+    },
+    shadow: {
+      none: "",
+      sm: "shadow-sm",
+      md: "shadow-md",
+      lg: "shadow-lg",
+    },
+    bordered: {
+      true: "border-b",
+      false: "border-none",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    shadow: "none",
+    bordered: false,
+  },
+});
+
+interface NavBarProps extends VariantProps<typeof navBarVariants> {
   brandName?: string;
   brandHref?: string;
   menuItems: MenuItemData[];
@@ -25,13 +54,16 @@ export default function NavBar({
   brandName = "Brand",
   brandHref = "/",
   menuItems,
+  variant,
+  shadow,
+  bordered,
   className = "",
 }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className}`}
+      className={cn(navBarVariants({ variant, shadow, bordered }), className)}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href={brandHref} className="text-xl font-bold hover:opacity-80">
@@ -64,7 +96,7 @@ export default function NavBar({
               <NavMenu
                 items={menuItems}
                 orientation="vertical"
-                className="w-full"
+                className="w-ful"
               />
             </div>
           </SheetContent>
