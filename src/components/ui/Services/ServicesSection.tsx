@@ -1,27 +1,6 @@
-import ServiceCard from "./ServiceCard";
+import ServiceCard, { Service } from "./ServiceCard";
 import { FadeInScale } from "@/components/ui/animations/FadeInScale";
 import ScrollPopUp from "@/components/ui/animations/ScrollPopUp";
-
-interface Service {
-  image: {
-    src: string;
-    alt: string;
-    aspectRatio?: "square" | "video" | "portrait";
-    objectPosition?: "center" | "top" | "bottom" | "left" | "right";
-  };
-  title: string;
-  subtitle: string;
-  primaryCta?: {
-    label: string;
-    href: string;
-    variant?: "default" | "outline" | "oval";
-  };
-  secondaryCta?: {
-    label: string;
-    href: string;
-    variant?: "default" | "outline" | "oval";
-  };
-}
 
 interface ServicesSectionProps {
   title?: string;
