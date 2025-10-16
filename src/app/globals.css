@@ -133,3 +133,7 @@
 .animate-gradient {
   animation: gradient 8s linear infinite;
 }
+
+html {
+  scroll-snap-type: y proximity;
+}
