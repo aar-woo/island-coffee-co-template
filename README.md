@@ -34,3 +34,39 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Sanity CMS
+
+This project integrates [Sanity CMS](https://www.sanity.io/) for content management.
+
+### Accessing Sanity Studio
+
+The Sanity Studio is integrated into this Next.js application. Once you run the development server, you can access:
+
+- **Your website**: [http://localhost:3000](http://localhost:3000)
+- **Sanity Studio**: [http://localhost:3000/studio](http://localhost:3000/studio)
+
+### Environment Variables
+
+Make sure you have the following environment variables set in your `.env.local` file:
+
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=YOUR_PROJECT_ID
+NEXT_PUBLIC_SANITY_DATASET=YOUR_DATASET
+NEXT_PUBLIC_SANITY_API_VERSION=YOUR_API_VERSION
+```
+
+### Project Structure
+
+- `src/sanity/` - Sanity configuration and schemas
+  - `schemaTypes/` - Content type definitions
+  - `lib/` - Sanity client and utilities
+  - `env.ts` - Environment variable configuration
+- `src/app/studio/` - Studio UI route
+- `sanity.config.ts` - Studio configuration
+- `sanity.cli.ts` - CLI configuration
+
+### Learn More
+
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [Next.js + Sanity Guide](https://www.sanity.io/guides/sanity-nextjs-guide)
