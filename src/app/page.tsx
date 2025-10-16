@@ -187,8 +187,6 @@ export default function Home() {
           primaryCta={{ label: "Shop Now", href: "/shop" }}
           secondaryCta={{ label: "Learn More", href: "/about" }}
         />
-        <Parallax sections={parallaxImages} />
-
         <ServicesSection
           title="What We Offer"
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
@@ -199,6 +197,7 @@ export default function Home() {
           description="We are a small team of coffee lovers who are passionate about coffee and the community"
           contentBlocks={contentBlocks}
         />
+        <Parallax sections={parallaxImages} />
         <Gallery />
       </main>
       <Footer

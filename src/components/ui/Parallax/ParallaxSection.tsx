@@ -48,8 +48,7 @@ export default function ParallaxSection({
       >
         <h2 className="text-2xl md:text-4xl font-bold mb-2">{title}</h2>
         <Separator className="max-w-3/4 my-2" />
-
-        <p className="text-base md:text-lg max-w-3/4">{description}</p>
+        <p className="md:text-lg max-w-3/4">{description}</p>
       </motion.div>
     </section>
   );
