@@ -4,7 +4,7 @@ import HoverCard from "../HoverCard/HoverCard";
 import { HoverCardProps } from "../HoverCard/HoverCard";
 import { Pointer } from "lucide-react";
 
-interface ContentImageProps {
+export interface ContentImageProps {
   src: string;
   alt: string;
   aspectRatio?: "square" | "video" | "portrait";

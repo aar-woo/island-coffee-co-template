@@ -18,6 +18,7 @@ import Gallery from "@/components/ui/Gallery/Gallery";
 import AboutSection, {
   ContentBlockData,
 } from "@/components/ui/About/AboutSection";
+import Parallax from "@/components/ui/Parallax/Parallax";
 
 const menuItems = [
   {
@@ -139,6 +140,36 @@ const contentBlocks: ContentBlockData[] = [
   },
 ];
 
+const parallaxImages = [
+  {
+    image: {
+      src: "/images/coffee-farm.jpg",
+      alt: "Our coffee farm in Hawaii",
+    },
+    title: "Our Story",
+    description:
+      "Founded in 2010, Island Coffee Co. started as a small family farm with a passion for growing exceptional coffee. Today, we maintain that same dedication to quality while sharing our love of Hawaiian coffee with the world.",
+  },
+  {
+    image: {
+      src: "/images/coffee-roasting-machine.jpg",
+      alt: "Coffee roasting process",
+    },
+    title: "Farm to Cup",
+    description:
+      "We control every step of the process - from carefully cultivating our coffee plants to roasting the beans to perfection. This hands-on approach ensures the highest quality in every cup.",
+  },
+  {
+    image: {
+      src: "/images/cafe-workers.jpg",
+      alt: "Coffee shop community",
+    },
+    title: "Community First",
+    description:
+      "More than just a coffee company, we're proud to be part of the local Hawaiian community. We work closely with local farmers and businesses, creating sustainable partnerships that benefit our entire island.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="font-sans">
@@ -166,6 +197,7 @@ export default function Home() {
           description="We are a small team of coffee lovers who are passionate about coffee and the community"
           contentBlocks={contentBlocks}
         />
+        <Parallax sections={parallaxImages} />
         <Gallery />
       </main>
       <Footer

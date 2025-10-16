@@ -1,0 +1,55 @@
+"use client";
+import { motion, MotionValue, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+import ContentImage, {
+  ContentImageProps,
+} from "@/components/ui/ContentImage/ContentImage";
+import { Separator } from "@/components/ui/base/separator";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
+
+export interface ParallaxSectionProps {
+  title: string;
+  description: string;
+  image: ContentImageProps;
+}
+
+export default function ParallaxSection({
+  title,
+  description,
+  image,
+}: ParallaxSectionProps) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+  });
+  const y = useParallax(scrollYProgress, 220);
+
+  return (
+    <section className="snap-center flex justify-center items-center px-4">
+      <div
+        ref={ref}
+        className="w-full md:max-h-[75vh] md:max-w-3/4 m-3 bg-gray-100 overflow-hidden rounded-sm"
+      >
+        <ContentImage
+          src={image.src}
+          alt={image.alt}
+          aspectRatio={"portrait"}
+          className="brightness-50 md:aspect-video"
+        />
+      </div>
+      <motion.div
+        initial={{ visibility: "hidden" }}
+        animate={{ visibility: "visible" }}
+        style={{ y }}
+        className="text-white max-w-1/2 font-mono tracking-[-2px] absolute left-[45%]"
+      >
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">{title}</h2>
+        <Separator className="max-w-3/4 my-2" />
+        <p className="md:text-lg max-w-3/4">{description}</p>
+      </motion.div>
+    </section>
+  );
+}
