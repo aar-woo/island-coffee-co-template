@@ -24,28 +24,28 @@ export default function ParallaxSection({
   const { scrollYProgress } = useScroll({
     target: ref,
   });
-  const y = useParallax(scrollYProgress, 250);
+  const y = useParallax(scrollYProgress, 220);
 
   return (
     <section className="snap-center flex justify-center items-center px-4">
       <div
         ref={ref}
-        className="w-full m-3 bg-gray-100 overflow-hidden rounded-sm"
+        className="w-full md:max-h-[75vh] md:max-w-3/4 m-3 bg-gray-100 overflow-hidden rounded-sm"
       >
         <ContentImage
           src={image.src}
           alt={image.alt}
-          aspectRatio="portrait"
-          className="brightness-60"
+          aspectRatio={"portrait"}
+          className="brightness-60 md:aspect-video"
         />
       </div>
       <motion.div
         initial={{ visibility: "hidden" }}
         animate={{ visibility: "visible" }}
         style={{ y }}
-        className="text-white max-w-1/3 font-mono tracking-[-2px] absolute left-[50%] sm:left-[calc(50%)] md:left-[calc(50%+120px)]"
+        className="text-white max-w-1/2 font-mono tracking-[-2px] absolute left-[45%]"
       >
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold">{title}</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">{title}</h2>
         <p className="text-sm sm:text-base md:text-lg max-w-3/4">
           {description}
         </p>
