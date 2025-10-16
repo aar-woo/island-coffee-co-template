@@ -4,6 +4,7 @@ import { useRef } from "react";
 import ContentImage, {
   ContentImageProps,
 } from "@/components/ui/ContentImage/ContentImage";
+import { Separator } from "@/components/ui/base/separator";
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
@@ -36,7 +37,7 @@ export default function ParallaxSection({
           src={image.src}
           alt={image.alt}
           aspectRatio={"portrait"}
-          className="brightness-60 md:aspect-video"
+          className="brightness-50 md:aspect-video"
         />
       </div>
       <motion.div
@@ -46,9 +47,9 @@ export default function ParallaxSection({
         className="text-white max-w-1/2 font-mono tracking-[-2px] absolute left-[45%]"
       >
         <h2 className="text-2xl md:text-4xl font-bold mb-2">{title}</h2>
-        <p className="text-sm sm:text-base md:text-lg max-w-3/4">
-          {description}
-        </p>
+        <Separator className="max-w-3/4 my-2" />
+
+        <p className="text-base md:text-lg max-w-3/4">{description}</p>
       </motion.div>
     </section>
   );
