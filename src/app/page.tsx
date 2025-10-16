@@ -1,15 +1,4 @@
 import NavBar from "@/components/ui/NavBar/NavBar";
-import {
-  Home as HomeIcon,
-  Package,
-  Info,
-  Coffee,
-  CupSoda,
-  Mail,
-  Facebook,
-  Instagram,
-  Twitter,
-} from "lucide-react";
 import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
@@ -19,35 +8,8 @@ import AboutSection, {
 } from "@/components/ui/About/AboutSection";
 import Parallax from "@/components/ui/Parallax/Parallax";
 
-const services = [
-  {
-    image: {
-      src: "/images/island-coffee-hero.jpg",
-      alt: "Specialty coffee being brewed",
-    },
-    title: "Specialty Coffee",
-    subtitle:
-      "Experience the finest locally-sourced Hawaiian coffee beans, roasted to perfection with rich flavors and aromas.",
-  },
-  {
-    image: {
-      src: "/images/cafe-food.jpg",
-      alt: "Delicious pastries and food",
-    },
-    title: "Delicious Food",
-    subtitle:
-      "Pair your coffee with our selection of fresh pastries, sandwiches, and local Hawaiian treats made daily. You'll want to try everything on the menu.",
-  },
-  {
-    image: {
-      src: "/images/coffee-mug-merch.jpg",
-      alt: "Coffee merchandise and brewing equipment",
-    },
-    title: "Merchandise",
-    subtitle:
-      "Take home our premium brewing equipment, branded merchandise, and gift sets for the coffee lover in your life.",
-  },
-];
+import { Service } from "@/components/ui/Services/ServiceCard";
+import { fetchServiceCardContent } from "@/sanity/lib/sanityQueries";
 
 const images = [
   { src: "/images/cafe-food.jpg", alt: "Cafe food" },
@@ -138,6 +100,8 @@ const parallaxImages = [
 ];
 
 export default async function Home() {
+  const sanityServiceCardContent = await fetchServiceCardContent();
+  // console.log("sanityServiceCardContent: ", sanityServiceCardContent);
   return (
     <div className="font-sans">
       <header className="sticky top-0 z-50">
@@ -157,7 +121,7 @@ export default async function Home() {
         <ServicesSection
           title="What We Offer"
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
-          services={services}
+          services={sanityServiceCardContent}
         />
         <AboutSection
           title="About Us"
