@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import {
+  Coffee,
+  CupSoda,
+  HomeIcon,
+  Info,
+  Mail,
+  Menu,
+  Package,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/base/button";
 import {
   Sheet,
@@ -15,6 +24,38 @@ import { type MenuItemData } from "@/components/ui/NavBar/NavMenuItem";
 import Link from "next/link";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+
+const defaultMenuItems = [
+  {
+    label: "Home",
+    href: "/",
+    icon: HomeIcon,
+  },
+  { label: "About", href: "/about", icon: Info },
+  {
+    label: "Products",
+    children: [
+      {
+        label: "Coffee Beans",
+        href: "/products/beans",
+        description: "Premium single-origin beans",
+        icon: Coffee,
+      },
+      {
+        label: "Brewing Equipment",
+        href: "/products/equipment",
+        description: "Quality brewing tools",
+        icon: CupSoda,
+      },
+    ],
+    icon: Package,
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    icon: Mail,
+  },
+];
 
 const navBarVariants = cva("sticky top-0 z-50 w-full border-b transition-all", {
   variants: {
@@ -46,14 +87,14 @@ const navBarVariants = cva("sticky top-0 z-50 w-full border-b transition-all", {
 interface NavBarProps extends VariantProps<typeof navBarVariants> {
   brandName?: string;
   brandHref?: string;
-  menuItems: MenuItemData[];
+  menuItems?: MenuItemData[];
   className?: string;
 }
 
 export default function NavBar({
   brandName = "Brand",
   brandHref = "/",
-  menuItems,
+  menuItems = defaultMenuItems,
   variant,
   shadow,
   bordered,

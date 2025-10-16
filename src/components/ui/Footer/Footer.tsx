@@ -53,18 +53,72 @@ interface FooterProps {
   className?: string;
 }
 
+// Default data objects
+const DEFAULT_NAVIGATION_LINKS: NavigationSection[] = [
+  {
+    title: "Products",
+    links: [
+      { label: "Coffee Beans", href: "/products/beans" },
+      { label: "Brewing Equipment", href: "/products/equipment" },
+      { label: "Merchandise", href: "/products/merch" },
+      { label: "Gift Sets", href: "/products/gifts" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Story", href: "/story" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
+  {
+    platform: "Facebook",
+    href: "https://facebook.com",
+    icon: Facebook,
+  },
+  {
+    platform: "Instagram",
+    href: "https://instagram.com",
+    icon: Instagram,
+  },
+  { platform: "Twitter", href: "https://twitter.com", icon: Twitter },
+  {
+    platform: "Email",
+    href: "mailto:hello@islandcoffee.com",
+    icon: Mail,
+  },
+];
+
+const DEFAULT_BUSINESS_INFO: BusinessInfo = {
+  address: "123 Kona Coast Dr, Kailua-Kona, HI 96740",
+  phone: "(808) 555-0123",
+  email: "hello@islandcoffee.com",
+  hours: "Mon-Sat: 6am-6pm, Sun: 7am-5pm",
+};
+
+const DEFAULT_LEGAL_LINKS: FooterLink[] = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Cookie Policy", href: "/cookies" },
+];
+
 export default function Footer({
   brandName = "Brand",
   brandHref = "/",
   tagline,
-  navigationLinks = [],
-  socialLinks = [],
-  businessInfo,
+  navigationLinks = DEFAULT_NAVIGATION_LINKS,
+  socialLinks = DEFAULT_SOCIAL_LINKS,
+  businessInfo = DEFAULT_BUSINESS_INFO,
   showNewsletter = false,
   showMap = false,
   mapEmbedUrl,
   copyrightText,
-  legalLinks = [],
+  legalLinks = DEFAULT_LEGAL_LINKS,
   className = "",
 }: FooterProps) {
   const [email, setEmail] = useState("");

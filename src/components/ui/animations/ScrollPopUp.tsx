@@ -1,4 +1,5 @@
-import * as motion from "motion/react-client";
+"use client";
+import { motion } from "motion/react";
 import type { Variants } from "motion/react";
 
 interface ContentProps {
