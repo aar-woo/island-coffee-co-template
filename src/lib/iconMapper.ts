@@ -16,19 +16,18 @@ import {
 
 // Map of icon names to Lucide icon components
 const iconMap: Record<string, LucideIcon> = {
-  Home,
-  HomeIcon: Home,
-  Info,
-  Package,
-  Coffee,
-  CupSoda,
-  Mail,
-  Facebook,
-  Instagram,
-  Twitter,
-  Phone,
-  MapPin,
-  Clock,
+  home: Home,
+  info: Info,
+  package: Package,
+  coffee: Coffee,
+  cupSoda: CupSoda,
+  mail: Mail,
+  facebook: Facebook,
+  instagram: Instagram,
+  twitter: Twitter,
+  phone: Phone,
+  mapPin: MapPin,
+  clock: Clock,
 };
 
 /**
@@ -38,5 +37,5 @@ const iconMap: Record<string, LucideIcon> = {
  */
 export function getIcon(iconName?: string): LucideIcon | undefined {
   if (!iconName) return undefined;
-  return iconMap[iconName];
+  return iconMap[iconName.toLowerCase()];
 }
