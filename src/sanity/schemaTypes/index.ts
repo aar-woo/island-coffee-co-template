@@ -14,3 +14,5 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     siteSettingsType,
   ],
 };
+
+export { contentBlockTemplates } from "./contentBlockType";

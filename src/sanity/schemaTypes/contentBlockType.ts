@@ -59,6 +59,7 @@ export const contentBlockType = defineType({
       },
       initialValue: "about",
       validation: (rule) => rule.required(),
+      hidden: true,
     }),
     defineField({
       name: "order",
@@ -84,3 +85,22 @@ export const contentBlockType = defineType({
     },
   ],
 });
+
+export const contentBlockTemplates = [
+  {
+    id: "contentBlock-about",
+    title: "About Content Block",
+    schemaType: "contentBlock",
+    value: {
+      type: "about",
+    },
+  },
+  {
+    id: "contentBlock-parallax",
+    title: "Parallax Content Block",
+    schemaType: "contentBlock",
+    value: {
+      type: "parallax",
+    },
+  },
+];

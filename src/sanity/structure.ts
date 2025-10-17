@@ -16,6 +16,12 @@ export const structure: StructureResolver = (S) =>
             .title("About Content Blocks")
             .filter('_type == "contentBlock" && type == "about"')
             .defaultOrdering([{ field: "order", direction: "asc" }])
+            .canHandleIntent((intentName, params) => {
+              return intentName === "create" && params.type === "contentBlock";
+            })
+            .initialValueTemplates([
+              S.initialValueTemplateItem("contentBlock-about"),
+            ])
         ),
 
       S.listItem()
@@ -25,5 +31,11 @@ export const structure: StructureResolver = (S) =>
             .title("Parallax Content Blocks")
             .filter('_type == "contentBlock" && type == "parallax"')
             .defaultOrdering([{ field: "order", direction: "asc" }])
+            .canHandleIntent((intentName, params) => {
+              return intentName === "create" && params.type === "contentBlock";
+            })
+            .initialValueTemplates([
+              S.initialValueTemplateItem("contentBlock-parallax"),
+            ])
         ),
     ]);
