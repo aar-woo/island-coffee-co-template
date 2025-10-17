@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const serviceCardType = defineType({
-  name: "serviceCard",
-  title: "Service Card",
+export const contentBlockType = defineType({
+  name: "contentBlock",
+  title: "Content Block",
   type: "document",
   fields: [
     defineField({
@@ -12,7 +12,7 @@ export const serviceCardType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "subtitle",
+      name: "description",
       title: "Description",
       type: "text",
       validation: (rule) => rule.required(),
@@ -28,7 +28,7 @@ export const serviceCardType = defineType({
         {
           name: "alt",
           type: "string",
-          title: "Image Description",
+          title: "Image Description (for accessibility)",
           validation: (rule) => rule.required(),
         },
       ],
@@ -44,8 +44,21 @@ export const serviceCardType = defineType({
       name: "buttonLink",
       title: "Button Link (optional)",
       type: "string",
-      description: "Where the button should go",
+      description: "Where the button should go (e.g., /about, /contact)",
       hidden: ({ parent }) => !parent?.buttonLabel,
+    }),
+    defineField({
+      name: "type",
+      title: "Section Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "About Section", value: "about" },
+          { title: "Parallax Section", value: "parallax" },
+        ],
+      },
+      initialValue: "about",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "order",
@@ -59,7 +72,7 @@ export const serviceCardType = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "subtitle",
+      subtitle: "type",
       media: "image",
     },
   },
