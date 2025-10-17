@@ -11,7 +11,6 @@ import {
 import { Service } from "@/components/ui/Services/ServiceCard";
 import { ContentBlockData } from "@/components/ui/About/AboutSection";
 import type { ParallaxSectionProps } from "@/components/ui/Parallax/ParallaxSection";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const SERVICE_CARDS_QUERY = `*[_type == "serviceCard"] | order(order asc) {
   _id,

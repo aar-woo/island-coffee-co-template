@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const serviceCardType = defineType({
   name: "serviceCard",
-  title: "Service Card",
+  title: "Service Cards",
   type: "document",
   fields: [
     defineField({
