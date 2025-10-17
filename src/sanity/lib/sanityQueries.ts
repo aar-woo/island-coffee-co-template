@@ -80,7 +80,19 @@ export async function fetchContentBlocks(
 ): Promise<ContentBlockData[]> {
   try {
     const query = type
-      ? `${CONTENT_BLOCKS_QUERY.replace("}", ` && type == "${type}" }`)}`
+      ? `*[_type == "contentBlock" && type == "${type}"] | order(order asc) {
+  _id,
+  title,
+  description,
+  image {
+    asset,
+    alt
+  },
+  buttonLabel,
+  buttonLink,
+  order,
+  type
+}`
       : CONTENT_BLOCKS_QUERY;
 
     const sanityContentBlocks: SanityContentBlock[] = await client.fetch(
@@ -122,8 +134,22 @@ export async function fetchContentBlocks(
 // Parallax sections
 export async function fetchParallaxSections(): Promise<ParallaxSectionProps[]> {
   try {
+    const query = `*[_type == "contentBlock" && type == "parallax"] | order(order asc) {
+  _id,
+  title,
+  description,
+  image {
+    asset,
+    alt
+  },
+  buttonLabel,
+  buttonLink,
+  order,
+  type
+}`;
+
     const sanityContentBlocks: SanityContentBlock[] = await client.fetch(
-      CONTENT_BLOCKS_QUERY.replace("}", ' && type == "parallax" }'),
+      query,
       {},
       {
         next: { revalidate: 60 },
