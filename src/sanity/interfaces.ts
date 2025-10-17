@@ -34,10 +34,20 @@ export interface SanityHero {
   _id: string;
   title: string;
   subtitle: string;
-  backgroundImage: {
-    asset: {
-      _ref: string;
-      _type: string;
+  backgroundMedia: {
+    mediaType: "image" | "video";
+    image?: {
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+    };
+    video?: {
+      asset: {
+        _ref: string;
+        _type: string;
+        url: string;
+      };
     };
   };
   primaryButtonText: string;

@@ -179,8 +179,16 @@ const HERO_QUERY = `*[_type == "hero"][0] {
   _id,
   title,
   subtitle,
-  backgroundImage {
-    asset
+  backgroundMedia {
+    mediaType,
+    image {
+      asset
+    },
+    video {
+      asset-> {
+        url
+      }
+    }
   },
   primaryButtonText,
   primaryButtonLink,
@@ -191,7 +199,7 @@ const HERO_QUERY = `*[_type == "hero"][0] {
 export interface HeroContent {
   title: string;
   subtitle: string;
-  background: { type: "image"; src: string };
+  background: { type: "image" | "video"; src: string };
   primaryCta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   overlayOpacity?: number;
@@ -207,7 +215,23 @@ export async function fetchHeroContent(): Promise<HeroContent | null> {
       }
     );
 
-    if (!sanityHero || !sanityHero.backgroundImage) {
+    if (!sanityHero || !sanityHero.backgroundMedia) {
+      return null;
+    }
+
+    const { backgroundMedia } = sanityHero;
+    let backgroundSrc: string = "";
+
+    if (backgroundMedia.mediaType === "image" && backgroundMedia.image?.asset) {
+      backgroundSrc = urlFor(backgroundMedia.image.asset).width(1920).url();
+    } else if (
+      backgroundMedia.mediaType === "video" &&
+      backgroundMedia.video?.asset
+    ) {
+      backgroundSrc = backgroundMedia.video.asset.url;
+    }
+
+    if (!backgroundSrc) {
       return null;
     }
 
@@ -215,8 +239,8 @@ export async function fetchHeroContent(): Promise<HeroContent | null> {
       title: sanityHero.title,
       subtitle: sanityHero.subtitle,
       background: {
-        type: "image",
-        src: urlFor(sanityHero.backgroundImage.asset).width(1920).url(),
+        type: backgroundMedia.mediaType,
+        src: backgroundSrc,
       },
       primaryCta: {
         label: sanityHero.primaryButtonText,

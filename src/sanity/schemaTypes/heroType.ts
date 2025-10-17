@@ -18,13 +18,60 @@ export const heroType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "backgroundImage",
-      title: "Background Image",
-      type: "image",
-      description: "Large background image for the hero section",
-      options: {
-        hotspot: true,
-      },
+      name: "backgroundMedia",
+      title: "Background Media",
+      type: "object",
+      description: "Background image or video for the hero section",
+      fields: [
+        {
+          name: "mediaType",
+          title: "Media Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "Image", value: "image" },
+              { title: "Video", value: "video" },
+            ],
+            layout: "radio",
+          },
+          initialValue: "image",
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "image",
+          title: "Background Image",
+          type: "image",
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }) => parent?.mediaType !== "image",
+          validation: (rule) =>
+            rule.custom((image, context) => {
+              const parent = context.parent as { mediaType?: string };
+              if (parent?.mediaType === "image" && !image) {
+                return "Image is required when media type is Image";
+              }
+              return true;
+            }),
+        },
+        {
+          name: "video",
+          title: "Background Video",
+          type: "file",
+          options: {
+            accept: "video/*",
+          },
+          hidden: ({ parent }) => parent?.mediaType !== "video",
+          validation: (rule) =>
+            rule.custom((video, context) => {
+              const parent = context.parent as { mediaType?: string };
+              if (parent?.mediaType === "video" && !video) {
+                return "Video is required when media type is Video";
+              }
+              return true;
+            }),
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -56,7 +103,16 @@ export const heroType = defineType({
     select: {
       title: "title",
       subtitle: "subtitle",
-      media: "backgroundImage",
+      media: "backgroundMedia.image",
+      mediaType: "backgroundMedia.mediaType",
+    },
+    prepare(selection) {
+      const { title, subtitle, media, mediaType } = selection;
+      return {
+        title,
+        subtitle: `${subtitle} (${mediaType === "video" ? "Video" : "Image"})`,
+        media,
+      };
     },
   },
 });
