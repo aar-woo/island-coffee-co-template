@@ -35,10 +35,14 @@ export const galleryType = defineType({
               validation: (rule) => rule.required(),
             },
             {
-              name: "caption",
-              title: "Caption (optional)",
+              name: "hoverHeader",
+              title: "Hover Header (optional)",
               type: "string",
-              description: "Shows when hovering over the image",
+            },
+            {
+              name: "hoverContent",
+              title: "Hover Content (optional)",
+              type: "string",
             },
           ],
           preview: {

@@ -6,10 +6,12 @@ import {
   SanityHero,
   SanityGallery,
   SanitySiteSettings,
+  SanityGalleryImage,
 } from "../interfaces";
 import { Service } from "@/components/ui/Services/ServiceCard";
 import { ContentBlockData } from "@/components/ui/About/AboutSection";
 import type { ParallaxSectionProps } from "@/components/ui/Parallax/ParallaxSection";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const SERVICE_CARDS_QUERY = `*[_type == "serviceCard"] | order(order asc) {
   _id,
@@ -218,7 +220,8 @@ const GALLERY_QUERY = `*[_type == "gallery"][0] {
       asset
     },
     alt,
-    caption
+    hoverHeader,
+    hoverContent
   }
 }`;
 
@@ -226,6 +229,7 @@ export interface GalleryImage {
   src: string;
   alt: string;
   hover?: {
+    header?: string;
     content?: string;
   };
 }
@@ -251,14 +255,16 @@ export async function fetchGalleryContent(): Promise<GalleryContent | null> {
 
     return {
       title: sanityGallery.title,
-      images: sanityGallery.images.map((img) => ({
+      images: sanityGallery.images.map((img: SanityGalleryImage) => ({
         src: urlFor(img.image.asset).width(800).height(600).url(),
         alt: img.alt,
-        hover: img.caption
-          ? {
-              content: img.caption,
-            }
-          : undefined,
+        hover:
+          img.hoverHeader || img.hoverContent
+            ? {
+                header: img.hoverHeader || undefined,
+                content: img.hoverContent || undefined,
+              }
+            : undefined,
       })),
     };
   } catch (error) {

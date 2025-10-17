@@ -54,7 +54,8 @@ export interface SanityGalleryImage {
     };
   };
   alt: string;
-  caption?: string;
+  hoverHeader?: string;
+  hoverContent?: string;
 }
 
 export interface SanityGallery {
