@@ -13,7 +13,7 @@ export const serviceCardType = defineType({
     }),
     defineField({
       name: "subtitle",
-      title: "Description",
+      title: "Subtitle",
       type: "text",
       validation: (rule) => rule.required(),
     }),
@@ -28,41 +28,84 @@ export const serviceCardType = defineType({
         {
           name: "alt",
           type: "string",
-          title: "Image Description",
+          title: "Alternative text",
           validation: (rule) => rule.required(),
         },
       ],
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "buttonLabel",
-      title: "Button Text (optional)",
-      type: "string",
-      description: "Leave empty if you don't want a button",
+      name: "primaryCta",
+      title: "Primary Call to Action",
+      type: "object",
+      fields: [
+        {
+          name: "label",
+          title: "Button Label",
+          type: "string",
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "href",
+          title: "Link URL",
+          type: "string",
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "variant",
+          title: "Button Variant",
+          type: "string",
+          options: {
+            list: [
+              { title: "Default", value: "default" },
+              { title: "Outline", value: "outline" },
+              { title: "Oval", value: "oval" },
+            ],
+          },
+          initialValue: "default",
+        },
+      ],
     }),
     defineField({
-      name: "buttonLink",
-      title: "Button Link (optional)",
-      type: "string",
-      description: "Where the button should go",
-      hidden: ({ parent }) => !parent?.buttonLabel,
+      name: "secondaryCta",
+      title: "Secondary Call to Action",
+      type: "object",
+      fields: [
+        {
+          name: "label",
+          title: "Button Label",
+          type: "string",
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "href",
+          title: "Link URL",
+          type: "string",
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: "variant",
+          title: "Button Variant",
+          type: "string",
+          options: {
+            list: [
+              { title: "Default", value: "default" },
+              { title: "Outline", value: "outline" },
+              { title: "Oval", value: "oval" },
+            ],
+          },
+          initialValue: "outline",
+        },
+      ],
     }),
     defineField({
       name: "order",
       title: "Display Order",
       type: "number",
-      description: "Lower numbers appear first (e.g., 1, 2, 3)",
       validation: (rule) => rule.required().min(0),
       initialValue: 0,
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      subtitle: "subtitle",
-      media: "image",
-    },
-  },
   orderings: [
     {
       title: "Display Order",
