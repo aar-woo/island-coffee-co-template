@@ -1,5 +1,11 @@
 import { ContentBlockData } from "@/components/ui/About/AboutSection";
 import { HeroContent } from "./sanity/lib/sanityQueries";
+import {
+  BusinessInfo,
+  FooterLink,
+  NavigationSection,
+  SocialLink,
+} from "./components/ui/Footer/Footer";
 
 export const fallbackContentBlocks: ContentBlockData[] = [
   {
@@ -94,3 +100,57 @@ export const fallbackHeroContent: HeroContent = {
   secondaryCta: { label: "Learn More", href: "/about" },
   overlayOpacity: 0.5,
 };
+
+// Default data objects
+export const fallbackNavigationLinks: NavigationSection[] = [
+  {
+    title: "Products",
+    links: [
+      { label: "Coffee Beans", href: "/products/beans" },
+      { label: "Brewing Equipment", href: "/products/equipment" },
+      { label: "Merchandise", href: "/products/merch" },
+      { label: "Gift Sets", href: "/products/gifts" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Story", href: "/story" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+export const fallbackSocialLinks: SocialLink[] = [
+  {
+    platform: "Facebook",
+    href: "https://facebook.com",
+    iconName: "Facebook",
+  },
+  {
+    platform: "Instagram",
+    href: "https://instagram.com",
+    iconName: "Instagram",
+  },
+  { platform: "Twitter", href: "https://twitter.com", iconName: "Twitter" },
+  {
+    platform: "Email",
+    href: "mailto:hello@islandcoffee.com",
+    iconName: "Mail",
+  },
+];
+
+export const fallbackBusinessInfo: BusinessInfo = {
+  address: "123 Kona Coast Dr, Kailua-Kona, HI 96740",
+  phone: "(808) 555-0123",
+  email: "hello@islandcoffee.com",
+  hours: "Mon-Sat: 6am-6pm, Sun: 7am-5pm",
+};
+
+export const fallbackLegalLinks: FooterLink[] = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Cookie Policy", href: "/cookies" },
+];

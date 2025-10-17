@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/base/button";
 import { Input } from "@/components/ui/base/input";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { getIcon } from "@/lib/iconMapper";
+import {
+  fallbackBusinessInfo,
+  fallbackLegalLinks,
+  fallbackNavigationLinks,
+  fallbackSocialLinks,
+} from "@/fallbackContent";
 
 interface FooterLink {
   label: string;
@@ -45,72 +51,18 @@ interface FooterProps {
   className?: string;
 }
 
-// Default data objects
-const DEFAULT_NAVIGATION_LINKS: NavigationSection[] = [
-  {
-    title: "Products",
-    links: [
-      { label: "Coffee Beans", href: "/products/beans" },
-      { label: "Brewing Equipment", href: "/products/equipment" },
-      { label: "Merchandise", href: "/products/merch" },
-      { label: "Gift Sets", href: "/products/gifts" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "/about" },
-      { label: "Our Story", href: "/story" },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-];
-
-const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
-  {
-    platform: "Facebook",
-    href: "https://facebook.com",
-    iconName: "Facebook",
-  },
-  {
-    platform: "Instagram",
-    href: "https://instagram.com",
-    iconName: "Instagram",
-  },
-  { platform: "Twitter", href: "https://twitter.com", iconName: "Twitter" },
-  {
-    platform: "Email",
-    href: "mailto:hello@islandcoffee.com",
-    iconName: "Mail",
-  },
-];
-
-const DEFAULT_BUSINESS_INFO: BusinessInfo = {
-  address: "123 Kona Coast Dr, Kailua-Kona, HI 96740",
-  phone: "(808) 555-0123",
-  email: "hello@islandcoffee.com",
-  hours: "Mon-Sat: 6am-6pm, Sun: 7am-5pm",
-};
-
-const DEFAULT_LEGAL_LINKS: FooterLink[] = [
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Cookie Policy", href: "/cookies" },
-];
-
 export default function Footer({
   brandName = "Brand",
   brandHref = "/",
   tagline,
-  navigationLinks = DEFAULT_NAVIGATION_LINKS,
-  socialLinks = DEFAULT_SOCIAL_LINKS,
-  businessInfo = DEFAULT_BUSINESS_INFO,
+  navigationLinks = fallbackNavigationLinks,
+  socialLinks = fallbackSocialLinks,
+  businessInfo = fallbackBusinessInfo,
   showNewsletter = false,
   showMap = false,
   mapEmbedUrl,
   copyrightText,
-  legalLinks = DEFAULT_LEGAL_LINKS,
+  legalLinks = fallbackLegalLinks,
   className = "",
 }: FooterProps) {
   const [email, setEmail] = useState("");
