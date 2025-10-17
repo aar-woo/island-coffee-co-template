@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export interface HoverCardProps {
   header?: ReactNode;
   content?: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   side?: "top" | "right" | "bottom" | "left";
   align?: "start" | "center" | "end";
