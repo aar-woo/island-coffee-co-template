@@ -264,13 +264,22 @@ export async function fetchHeroContent(): Promise<HeroContent | null> {
 const GALLERY_QUERY = `*[_type == "gallery"] {
   _id,
   title,
-  images[] {
-    image {
-      asset
+  imageCarousels[] {
+    carouselName,
+    images[] {
+      image {
+        asset
+      },
+      alt,
+      hoverHeader,
+      hoverContent
     },
-    alt,
-    hoverHeader,
-    hoverContent
+    autoPlay,
+    autoPlayInterval,
+    aspectRatio,
+    showDots,
+    showArrows,
+    direction,
   }
 }`;
 
@@ -283,9 +292,19 @@ export interface GalleryImage {
   };
 }
 
+export interface ImageCarouselConfig {
+  images: GalleryImage[];
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  aspectRatio?: "square" | "video" | "portrait";
+  showDots?: boolean;
+  showArrows?: boolean;
+  direction?: "ltr" | "rtl";
+}
+
 export interface GalleryContent {
   title?: string;
-  images: GalleryImage[];
+  imageCarousels: ImageCarouselConfig[];
 }
 
 export async function fetchGalleryContent(): Promise<GalleryContent[]> {
@@ -304,16 +323,24 @@ export async function fetchGalleryContent(): Promise<GalleryContent[]> {
 
     return sanityGalleries.map((gallery) => ({
       title: gallery.title,
-      images: gallery.images.map((img: SanityGalleryImage) => ({
-        src: urlFor(img.image.asset).width(800).height(600).url(),
-        alt: img.alt,
-        hover:
-          img.hoverHeader || img.hoverContent
-            ? {
-                header: img.hoverHeader || undefined,
-                content: img.hoverContent || undefined,
-              }
-            : undefined,
+      imageCarousels: gallery.imageCarousels?.map((carousel) => ({
+        images: carousel.images.map((img: SanityGalleryImage) => ({
+          src: urlFor(img.image.asset).width(800).height(600).url(),
+          alt: img.alt,
+          hover:
+            img.hoverHeader || img.hoverContent
+              ? {
+                  header: img.hoverHeader || undefined,
+                  content: img.hoverContent || undefined,
+                }
+              : undefined,
+        })),
+        autoPlay: carousel.autoPlay ?? true,
+        autoPlayInterval: carousel.autoPlayInterval ?? 4000,
+        aspectRatio: carousel.aspectRatio ?? "video",
+        showDots: carousel.showDots ?? true,
+        showArrows: carousel.showArrows ?? false,
+        direction: carousel.direction ?? "ltr",
       })),
     }));
   } catch (error) {

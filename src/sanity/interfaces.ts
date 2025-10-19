@@ -68,10 +68,21 @@ export interface SanityGalleryImage {
   hoverContent?: string;
 }
 
+export interface SanityImageCarousel {
+  carouselName?: string;
+  images: SanityGalleryImage[];
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  aspectRatio?: "square" | "video" | "portrait";
+  showDots?: boolean;
+  showArrows?: boolean;
+  direction?: "ltr" | "rtl";
+}
+
 export interface SanityGallery {
   _id: string;
   title?: string;
-  images: SanityGalleryImage[];
+  imageCarousels: SanityImageCarousel[];
 }
 
 export interface SanityBusinessInfo {
