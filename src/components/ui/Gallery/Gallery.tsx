@@ -1,7 +1,6 @@
 import { Coffee } from "lucide-react";
-import ImageCarousel, {
-  ImageCarouselItem,
-} from "../ImageCarousel/ImageCarousel";
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
+import { ImageCarouselConfig } from "@/sanity/lib/sanityQueries";
 
 const firstCarouselImages = [
   { src: "/images/cafe-food.jpg", alt: "Cafe food" },
@@ -36,12 +35,11 @@ const secondCarouselImages = [
 ];
 
 interface GalleryProps {
-  title: string;
-  imageCarousels: ImageCarouselItem[][];
+  title?: string;
+  imageCarousels: ImageCarouselConfig[];
 }
 
 export default function Gallery({ title, imageCarousels }: GalleryProps) {
-  console.log("imageCarousels", imageCarousels);
   return (
     <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex justify-center">
@@ -50,21 +48,16 @@ export default function Gallery({ title, imageCarousels }: GalleryProps) {
         </h2>
       </div>
       <div>
-        <ImageCarousel
-          images={firstCarouselImages}
-          autoPlay={true}
-          aspectRatio="video"
-          showArrows={false}
-          imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-        />
-        <ImageCarousel
-          images={secondCarouselImages}
-          autoPlay={true}
-          direction="rtl"
-          aspectRatio="video"
-          showArrows={false}
-          imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-        />
+        {imageCarousels.map((carousel, index) => (
+          <ImageCarousel
+            key={index}
+            images={carousel.images}
+            autoPlay={true}
+            aspectRatio={carousel.aspectRatio}
+            showArrows={false}
+            direction={carousel.direction}
+          />
+        ))}
       </div>
     </section>
   );

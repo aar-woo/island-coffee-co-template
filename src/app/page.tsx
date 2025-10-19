@@ -4,7 +4,6 @@ import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
 import AboutSection from "@/components/ui/About/AboutSection";
 import Parallax from "@/components/ui/Parallax/Parallax";
-import ImageCarousel from "@/components/ui/ImageCarousel/ImageCarousel";
 import {
   fetchServiceCardContent,
   fetchHeroContent,
@@ -91,10 +90,9 @@ export default async function Home() {
           {galleryContent.length > 0 && (
             <Gallery
               title={"Gallery"}
-              imageCarousels={galleryContent.map((gallery) => gallery.images)}
+              imageCarousels={galleryContent[0].imageCarousels}
             />
           )}
-          {/* </div> */}
         </section>
       </main>
       <Footer
