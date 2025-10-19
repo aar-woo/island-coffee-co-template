@@ -1,5 +1,7 @@
-import { Coffee, EggFried } from "lucide-react";
-import ImageCarousel from "../ImageCarousel/ImageCarousel";
+import { Coffee } from "lucide-react";
+import ImageCarousel, {
+  ImageCarouselItem,
+} from "../ImageCarousel/ImageCarousel";
 
 const firstCarouselImages = [
   { src: "/images/cafe-food.jpg", alt: "Cafe food" },
@@ -33,13 +35,19 @@ const secondCarouselImages = [
   },
 ];
 
-export default function Gallery() {
+interface GalleryProps {
+  title: string;
+  imageCarousels: ImageCarouselItem[][];
+}
+
+export default function Gallery({ title, imageCarousels }: GalleryProps) {
+  console.log("imageCarousels", imageCarousels);
   return (
     <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex justify-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Gallery
-        </h2>{" "}
+        </h2>
       </div>
       <div>
         <ImageCarousel

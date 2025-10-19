@@ -18,6 +18,7 @@ import {
   fallbackContentBlocks,
   fallbackGalleryImages,
 } from "@/fallbackContent";
+import Gallery from "@/components/ui/Gallery/Gallery";
 
 export default async function Home() {
   const [
@@ -58,8 +59,6 @@ export default async function Home() {
   const hero = heroContent || fallbackHeroContent;
   const contentBlocks =
     aboutBlocks.length > 0 ? aboutBlocks : fallbackContentBlocks;
-  const galleryImages = galleryContent?.images || fallbackGalleryImages;
-  const galleryTitle = galleryContent?.title || "Gallery";
 
   return (
     <div className="font-sans">
@@ -89,30 +88,13 @@ export default async function Home() {
           <Parallax sections={parallaxSections} />
         )}
         <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex justify-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {galleryTitle}
-            </h2>
-          </div>
-          <div>
-            <ImageCarousel
-              images={galleryImages.slice(0, 5)}
-              autoPlay={true}
-              aspectRatio="video"
-              showArrows={false}
-              imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+          {galleryContent.length > 0 && (
+            <Gallery
+              title={"Gallery"}
+              imageCarousels={galleryContent.map((gallery) => gallery.images)}
             />
-            {galleryImages.length > 5 && (
-              <ImageCarousel
-                images={galleryImages.slice(5)}
-                autoPlay={true}
-                direction="rtl"
-                aspectRatio="video"
-                showArrows={false}
-                imagesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-              />
-            )}
-          </div>
+          )}
+          {/* </div> */}
         </section>
       </main>
       <Footer

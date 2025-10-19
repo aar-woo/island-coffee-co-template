@@ -261,7 +261,7 @@ export async function fetchHeroContent(): Promise<HeroContent | null> {
 }
 
 // Gallery Query
-const GALLERY_QUERY = `*[_type == "gallery"][0] {
+const GALLERY_QUERY = `*[_type == "gallery"] {
   _id,
   title,
   images[] {
@@ -288,9 +288,9 @@ export interface GalleryContent {
   images: GalleryImage[];
 }
 
-export async function fetchGalleryContent(): Promise<GalleryContent | null> {
+export async function fetchGalleryContent(): Promise<GalleryContent[]> {
   try {
-    const sanityGallery: SanityGallery = await client.fetch(
+    const sanityGalleries: SanityGallery[] = await client.fetch(
       GALLERY_QUERY,
       {},
       {
@@ -298,13 +298,13 @@ export async function fetchGalleryContent(): Promise<GalleryContent | null> {
       }
     );
 
-    if (!sanityGallery || !sanityGallery.images) {
-      return null;
+    if (!sanityGalleries || sanityGalleries.length === 0) {
+      return [];
     }
 
-    return {
-      title: sanityGallery.title,
-      images: sanityGallery.images.map((img: SanityGalleryImage) => ({
+    return sanityGalleries.map((gallery) => ({
+      title: gallery.title,
+      images: gallery.images.map((img: SanityGalleryImage) => ({
         src: urlFor(img.image.asset).width(800).height(600).url(),
         alt: img.alt,
         hover:
@@ -315,10 +315,10 @@ export async function fetchGalleryContent(): Promise<GalleryContent | null> {
               }
             : undefined,
       })),
-    };
+    }));
   } catch (error) {
     console.error("Failed to fetch gallery content from Sanity:", error);
-    return null;
+    return [];
   }
 }
 
