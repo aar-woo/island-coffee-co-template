@@ -1,5 +1,5 @@
 import { ContentBlockData } from "@/components/ui/About/AboutSection";
-import { HeroContent } from "./sanity/lib/sanityQueries";
+import { HeroContent, ImageCarouselConfig } from "./sanity/lib/sanityQueries";
 import {
   BusinessInfo,
   FooterLink,
@@ -153,4 +153,53 @@ export const fallbackLegalLinks: FooterLink[] = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
   { label: "Cookie Policy", href: "/cookies" },
+];
+
+export const fallbackGalleryCarousels: ImageCarouselConfig[] = [
+  {
+    images: [
+      { src: "/images/cafe-food.jpg", alt: "Cafe food" },
+      { src: "/images/coffee-mug-merch.jpg", alt: "Coffee mug" },
+      { src: "/images/island-coffee-hero.jpg", alt: "Island coffee" },
+      {
+        src: "/images/coffee-shop-atmosphere-1.jpg",
+        alt: "Coffee shop atmosphere",
+      },
+      { src: "/images/espresso-machine.jpg", alt: "Espresso machine" },
+    ],
+    autoPlay: true,
+    aspectRatio: "video",
+    showDots: false,
+    showArrows: false,
+    direction: "ltr",
+  },
+  {
+    images: [
+      { src: "/images/cafe-food.jpg", alt: "Cafe food" },
+      { src: "/images/cafe-sea-side-table.jpg", alt: "Seaside table" },
+      { src: "/images/coffee-by-the-sea-1.jpg", alt: "Coffee by the sea" },
+      {
+        src: "/images/coffee-cup-1.jpg",
+        alt: "Coffee cup",
+        hover: {
+          header: "Coffee",
+          content: "Island Coffee Co. signature blend",
+        },
+      },
+      {
+        src: "/images/pancakes-breakfast.jpg",
+        alt: "Pancake breakfast",
+        hover: {
+          header: "Almond Macadamia Pancakes",
+          content:
+            "One of our most popular breakfast items, served with a side of our signature maple syrup.",
+        },
+      },
+    ],
+    autoPlay: true,
+    aspectRatio: "video",
+    showDots: false,
+    showArrows: false,
+    direction: "rtl",
+  },
 ];

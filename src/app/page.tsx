@@ -15,7 +15,7 @@ import {
 import {
   fallbackHeroContent,
   fallbackContentBlocks,
-  fallbackGalleryImages,
+  fallbackGalleryCarousels,
 } from "@/fallbackContent";
 import Gallery from "@/components/ui/Gallery/Gallery";
 
@@ -90,7 +90,9 @@ export default async function Home() {
           {galleryContent.length > 0 && (
             <Gallery
               title={"Gallery"}
-              imageCarousels={galleryContent[0].imageCarousels}
+              imageCarousels={
+                galleryContent[0].imageCarousels || fallbackGalleryCarousels
+              }
             />
           )}
         </section>
