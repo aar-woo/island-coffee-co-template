@@ -6,6 +6,7 @@ import NavMenuItem, {
   type MenuItemData,
 } from "@/components/ui/NavBar/NavMenuItem";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface NavMenuProps {
   items: MenuItemData[];
@@ -18,6 +19,8 @@ export default function NavMenu({
   orientation = "horizontal",
   className,
 }: NavMenuProps) {
+  const pathname = usePathname();
+
   return (
     <NavigationMenu
       orientation={orientation}
@@ -34,7 +37,12 @@ export default function NavMenu({
         )}
       >
         {items?.map((item, index) => (
-          <NavMenuItem key={index} item={item} orientation={orientation} />
+          <NavMenuItem
+            key={index}
+            item={item}
+            orientation={orientation}
+            isActive={pathname === item.href}
+          />
         ))}
       </NavigationMenuList>
     </NavigationMenu>
