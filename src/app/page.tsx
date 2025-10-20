@@ -18,6 +18,7 @@ import {
   fallbackGalleryCarousels,
 } from "@/fallbackContent";
 import Gallery from "@/components/ui/Gallery/Gallery";
+import ContactFormExample from "@/components/ui/Form/ContactFormExample";
 
 export default async function Home() {
   const [
@@ -73,6 +74,9 @@ export default async function Home() {
           secondaryCta={hero.secondaryCta}
           overlayOpacity={hero.overlayOpacity}
         />
+        <section className="w-full bg-muted/30 py-16">
+          <ContactFormExample />
+        </section>
         <ServicesSection
           title="What We Offer"
           description="Discover our range of premium coffee products, delicious food, and unique merchandise"
