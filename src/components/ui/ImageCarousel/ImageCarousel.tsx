@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import ContentImage from "@/components/ui/ContentImage/ContentImage";
@@ -76,11 +76,14 @@ export default function ImageCarousel({
   imagesPerView = { mobile: 1, tablet: 2, desktop: 3 },
   direction = "ltr",
 }: ImageCarouselProps) {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+  const [currentImagesPerView, setCurrentImagesPerView] = useState(
+    imagesPerView.desktop || 3
+  );
 
-  const autoplayPlugin = React.useRef(
+  const autoplayPlugin = useRef(
     Autoplay({
       delay: autoPlayInterval,
       stopOnInteraction: true,
@@ -89,7 +92,30 @@ export default function ImageCarousel({
     })
   );
 
-  React.useEffect(() => {
+  // Detect current breakpoint and update currentImagesPerView
+  useEffect(() => {
+    const updateImagesPerView = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        // lg breakpoint
+        setCurrentImagesPerView(imagesPerView.desktop || 3);
+      } else if (width >= 768) {
+        // md breakpoint
+        setCurrentImagesPerView(imagesPerView.tablet || 2);
+      } else {
+        setCurrentImagesPerView(imagesPerView.mobile || 1);
+      }
+    };
+
+    // Set initial value
+    updateImagesPerView();
+
+    // Add resize listener
+    window.addEventListener("resize", updateImagesPerView);
+    return () => window.removeEventListener("resize", updateImagesPerView);
+  }, [imagesPerView.mobile, imagesPerView.tablet, imagesPerView.desktop]);
+
+  useEffect(() => {
     if (!api) return;
 
     setCount(api.scrollSnapList().length);
@@ -106,14 +132,17 @@ export default function ImageCarousel({
     BASIS_CLASSES.desktop[(imagesPerView.desktop || 3) - 1]
   );
 
+  // Determine if autoplay should be enabled based on image count
+  const shouldAutoPlay = autoPlay && images.length > currentImagesPerView;
+
   const handleMouseEnter = () => {
-    if (autoPlay) {
+    if (shouldAutoPlay) {
       autoplayPlugin.current.stop();
     }
   };
 
   const handleMouseLeave = () => {
-    if (autoPlay) {
+    if (shouldAutoPlay) {
       autoplayPlugin.current.play();
     }
   };
@@ -137,7 +166,7 @@ export default function ImageCarousel({
           watchDrag: true,
           skipSnaps: false,
         }}
-        plugins={autoPlay ? [autoplayPlugin.current] : []}
+        plugins={shouldAutoPlay ? [autoplayPlugin.current] : []}
         setApi={setApi}
         className="w-full"
       >

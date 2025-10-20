@@ -1,21 +1,33 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/base/button";
-import ContentImage from "@/components/ui/ContentImage/ContentImage";
+import ContentImage, {
+  ContentImageProps,
+} from "@/components/ui/ContentImage/ContentImage";
 import { cn } from "@/lib/utils";
 
-interface CtaButton {
+export interface CtaButton {
   label: string;
   href: string;
   variant?: "default" | "outline" | "oval";
 }
 
+export interface ServiceImage {
+  src: string;
+  alt: string;
+  aspectRatio?: "square" | "video" | "portrait";
+  objectPosition?: "center" | "top" | "bottom" | "left" | "right";
+}
+
+export interface Service {
+  image: ContentImageProps;
+  title: string;
+  subtitle: string;
+  primaryCta?: CtaButton;
+  secondaryCta?: CtaButton;
+}
+
 interface ServiceCardProps {
-  image: {
-    src: string;
-    alt: string;
-    aspectRatio?: "square" | "video" | "portrait";
-    objectPosition?: "center" | "top" | "bottom" | "left" | "right";
-  };
+  image: ServiceImage;
   title: string;
   subtitle: string;
   primaryCta?: CtaButton;

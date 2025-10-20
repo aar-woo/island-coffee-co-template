@@ -4,16 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/base/button";
 import { Input } from "@/components/ui/base/input";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { getIcon } from "@/lib/iconMapper";
 import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Mail,
-  MapPin,
-  Phone,
-  Clock,
-  type LucideIcon,
-} from "lucide-react";
+  fallbackBusinessInfo,
+  fallbackLegalLinks,
+  fallbackNavigationLinks,
+  fallbackSocialLinks,
+} from "@/fallbackContent";
 
 interface FooterLink {
   label: string;
@@ -28,7 +26,7 @@ interface NavigationSection {
 interface SocialLink {
   platform: string;
   href: string;
-  icon: LucideIcon;
+  iconName: string;
 }
 
 interface BusinessInfo {
@@ -57,14 +55,14 @@ export default function Footer({
   brandName = "Brand",
   brandHref = "/",
   tagline,
-  navigationLinks = [],
-  socialLinks = [],
-  businessInfo,
+  navigationLinks = fallbackNavigationLinks,
+  socialLinks = fallbackSocialLinks,
+  businessInfo = fallbackBusinessInfo,
   showNewsletter = false,
   showMap = false,
   mapEmbedUrl,
   copyrightText,
-  legalLinks = [],
+  legalLinks = fallbackLegalLinks,
   className = "",
 }: FooterProps) {
   const [email, setEmail] = useState("");
@@ -164,7 +162,8 @@ export default function Footer({
                 {socialLinks.length > 0 && (
                   <nav className="flex gap-3 pt-2" aria-label="Social links">
                     {socialLinks.map((social, index) => {
-                      const Icon = social.icon;
+                      const Icon = getIcon(social.iconName);
+                      if (!Icon) return null;
                       return (
                         <a
                           key={index}
