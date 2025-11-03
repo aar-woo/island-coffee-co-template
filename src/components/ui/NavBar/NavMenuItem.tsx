@@ -24,11 +24,13 @@ export interface MenuItemData {
 interface NavMenuItemProps {
   item: MenuItemData;
   orientation?: "horizontal" | "vertical";
+  isActive?: boolean;
 }
 
 export default function NavMenuItem({
   item,
   orientation = "horizontal",
+  isActive = false,
 }: NavMenuItemProps) {
   const isVertical = orientation === "vertical";
 
@@ -93,16 +95,25 @@ export default function NavMenuItem({
 
   return (
     <NavMenuItemPrimitive className={cn(isVertical && "w-full")}>
-      <NavigationMenuLink asChild>
-        <Link
-          href={item.href || "#"}
-          className={cn(
-            "group/link px-4 py-2 font-medium inline-flex no-wrap flex-row items-center leading-none gap-2",
-            isVertical && "w-full justify-start"
-          )}
-        >
+      <NavigationMenuLink
+        asChild
+        active={isActive}
+        className={cn(
+          "group/link data-[active=true]:text-underline px-4 py-2 font-medium inline-flex no-wrap flex-row items-center leading-none gap-2 rounded-md transition-colors",
+          isVertical && "w-full justify-start",
+          isActive && "bg-accent text-accent-foreground"
+        )}
+      >
+        <Link href={item.href || "/"}>
           {Icon && (
-            <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover/link:text-foreground" />
+            <Icon
+              className={cn(
+                "h-4 w-4 transition-colors",
+                isActive
+                  ? "text-foreground"
+                  : "text-muted-foreground group-hover/link:text-foreground"
+              )}
+            />
           )}
           {item.label}
         </Link>

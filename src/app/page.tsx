@@ -1,4 +1,3 @@
-import NavBar from "@/components/ui/NavBar/NavBar";
 import Hero from "@/components/ui/Hero/Hero";
 import ServicesSection from "@/components/ui/Services/ServicesSection";
 import Footer from "@/components/ui/Footer/Footer";
@@ -18,6 +17,7 @@ import {
   fallbackGalleryCarousels,
 } from "@/fallbackContent";
 import Gallery from "@/components/ui/Gallery/Gallery";
+import ContactFormExample from "@/components/ui/Form/ContactFormExample";
 
 export default async function Home() {
   const [
@@ -61,9 +61,6 @@ export default async function Home() {
 
   return (
     <div className="font-sans">
-      <header className="sticky top-0 z-50">
-        <NavBar brandName={brandName} />
-      </header>
       <main>
         <Hero
           title={hero.title}
