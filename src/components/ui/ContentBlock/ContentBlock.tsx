@@ -26,7 +26,7 @@ interface ContentBlockProps {
   TextAnimationWrapper?: React.ComponentType<{
     children: React.ReactNode;
     i: number;
-    [key: string]: any;
+    [key: string]: unknown;
   }>;
 }
 

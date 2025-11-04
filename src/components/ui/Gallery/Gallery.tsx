@@ -11,7 +11,7 @@ export default function Gallery({ title, imageCarousels }: GalleryProps) {
     <section className="w-full bg-background my-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex justify-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Gallery
+          {title || "Gallery"}
         </h2>
       </div>
       <div>
