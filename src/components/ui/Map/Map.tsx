@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import React, { useState } from "react";
+import {
+  DirectionsRenderer,
+  DirectionsService,
+  GoogleMap,
+  LoadScript,
+  Marker,
+} from "@react-google-maps/api";
 import { Button } from "../base/button";
 
 const containerStyle = {
@@ -35,18 +41,55 @@ async function getCurrentPosition(): Promise<Position> {
 
 function Map() {
   const [currentPosition, setCurrentPosition] = useState<Position | null>(null);
+  const [directions, setDirections] =
+    useState<google.maps.DirectionsResult | null>(null);
+  const [requestDirections, setRequestDirections] = useState(false);
 
-  const handleGetCurrentPosition = async () => {
-    const position = await getCurrentPosition();
-    setCurrentPosition(position);
+  const handleGetDirections = async () => {
+    try {
+      const position = await getCurrentPosition();
+      setCurrentPosition(position);
+      setRequestDirections(true);
+    } catch (error) {
+      console.error("Error getting current position:", error);
+    }
   };
+
+  const directionsCallback = (
+    result: google.maps.DirectionsResult | null,
+    status: google.maps.DirectionsStatus
+  ) => {
+    if (status === "OK" && result) {
+      setDirections(result);
+    } else {
+      console.error("Error fetching directions:", status);
+    }
+    setRequestDirections(false);
+  };
+
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <LoadScript
-        googleMapsApiKey={process.env.GOOGLE_MAPS_EMBED_API_KEY || ""}
+        googleMapsApiKey={
+          process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY || ""
+        }
       >
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
           <Marker position={center} />
+          {currentPosition && <Marker position={currentPosition} />}
+
+          {requestDirections && currentPosition && (
+            <DirectionsService
+              options={{
+                origin: currentPosition,
+                destination: center,
+                travelMode: google.maps.TravelMode.DRIVING,
+              }}
+              callback={directionsCallback}
+            />
+          )}
+
+          {directions && <DirectionsRenderer directions={directions} />}
         </GoogleMap>
       </LoadScript>
 
@@ -64,7 +107,7 @@ function Map() {
           cursor: "pointer",
           boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
         }}
-        onClick={handleGetCurrentPosition}
+        onClick={handleGetDirections}
       >
         Get Directions
       </Button>
