@@ -101,9 +101,7 @@ export default async function Home() {
         socialLinks={socialLinks.length > 0 ? socialLinks : undefined}
         businessInfo={siteSettings?.businessInfo}
         showNewsletter={siteSettings?.showNewsletter}
-        mapEmbedUrl={
-          "https://www.google.com/maps/embed/v1/place?q=Ala%20moana&key=AIzaSyCSb_TFbG-c97YuHfwusVnJA21pZTPuE_E"
-        }
+        mapEmbedUrl={`https://www.google.com/maps/embed/v1/place?q=Ala%20moana&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
       />
     </div>
   );
