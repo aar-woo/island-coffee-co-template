@@ -12,6 +12,7 @@ import {
   fallbackNavigationLinks,
   fallbackSocialLinks,
 } from "@/fallbackContent";
+import Map from "../Map/Map";
 
 interface FooterLink {
   label: string;
@@ -91,17 +92,20 @@ export default function Footer({
             <div className="w-full mx-auto bg-muted/80 rounded-lg p-4 mb-8 ">
               <div className="relative lg:max-w-3xl mx-auto aspect-video w-full overflow-hidden rounded-lg border bg-muted">
                 {mapEmbedUrl ? (
-                  <iframe
-                    src={mapEmbedUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="absolute inset-0"
-                    title="Location map"
-                  />
+                  // <iframe
+                  //   src={mapEmbedUrl}
+                  //   width="100%"
+                  //   height="100%"
+                  //   style={{ border: 0 }}
+                  //   allowFullScreen
+                  //   loading="lazy"
+                  //   referrerPolicy="no-referrer-when-downgrade"
+                  //   className="absolute inset-0"
+                  //   title="Location map"
+                  // />
+                  <div className="w-full h-full">
+                    <Map />
+                  </div>
                 ) : (
                   <address className="flex h-full items-center justify-center">
                     <div className="text-center">
