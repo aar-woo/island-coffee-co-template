@@ -153,7 +153,8 @@ export const galleryType = defineType({
     prepare({ title, imageCarousels }) {
       const carouselCount = imageCarousels?.length || 0;
       const totalImages = imageCarousels?.reduce(
-        (sum: number, carousel: any) => sum + (carousel.images?.length || 0),
+        (sum: number, carousel: { images?: unknown[] }) =>
+          sum + (carousel.images?.length || 0),
         0
       );
       return {

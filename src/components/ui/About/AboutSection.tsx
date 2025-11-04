@@ -1,5 +1,4 @@
 import ContentBlock from "@/components/ui/ContentBlock/ContentBlock";
-import { FadeInScale } from "@/components/ui/animations/FadeInScale";
 import ScrollPopUp from "@/components/ui/animations/ScrollPopUp";
 
 export interface ContentBlockData {
