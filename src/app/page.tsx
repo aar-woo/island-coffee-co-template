@@ -17,7 +17,6 @@ import {
   fallbackGalleryCarousels,
 } from "@/fallbackContent";
 import Gallery from "@/components/ui/Gallery/Gallery";
-import ContactFormExample from "@/components/ui/Form/ContactFormExample";
 
 export default async function Home() {
   const [
@@ -102,6 +101,9 @@ export default async function Home() {
         socialLinks={socialLinks.length > 0 ? socialLinks : undefined}
         businessInfo={siteSettings?.businessInfo}
         showNewsletter={siteSettings?.showNewsletter}
+        mapEmbedUrl={
+          "https://www.google.com/maps/embed/v1/place?q=Ala%20moana&key=AIzaSyCSb_TFbG-c97YuHfwusVnJA21pZTPuE_E"
+        }
       />
     </div>
   );
