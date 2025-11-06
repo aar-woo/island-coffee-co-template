@@ -3,6 +3,7 @@ import {
   DirectionsRenderer,
   DirectionsService,
   GoogleMap,
+  InfoWindow,
   LoadScript,
   Marker,
 } from "@react-google-maps/api";
@@ -89,7 +90,24 @@ function Map() {
             />
           )}
 
-          {directions && <DirectionsRenderer directions={directions} />}
+          {directions && (
+            <div>
+              <DirectionsRenderer directions={directions} />
+              <InfoWindow
+                position={directions.routes[0]?.legs[0]?.end_location || center}
+                options={{
+                  pixelOffset: new google.maps.Size(0, -20),
+                  headerDisabled: true,
+                }}
+              >
+                <div className="flex flex-col gap-2">
+                  <h1 className="text-md font-bold">Estimated travel time:</h1>
+                  <div>🕒 {directions.routes[0]?.legs[0]?.duration?.text}</div>
+                  <div>🏁 {directions.routes[0]?.legs[0]?.distance?.text}</div>
+                </div>
+              </InfoWindow>
+            </div>
+          )}
         </GoogleMap>
       </LoadScript>
 
