@@ -92,8 +92,26 @@ function Map() {
         }
       >
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
-          <Marker position={center} />
-          {currentPosition && <Marker position={currentPosition} />}
+          {!directions && (
+            <Marker
+              position={center}
+              icon={{
+                path: 0,
+                scale: 20,
+                fillColor: "white",
+                fillOpacity: 1,
+                strokeColor: "green",
+                strokeWeight: 4,
+              }}
+              label={{
+                text: "☕️",
+                fontSize: "24px",
+              }}
+            />
+          )}
+          {!directions && currentPosition && (
+            <Marker position={currentPosition} />
+          )}
 
           {requestDirections && currentPosition && (
             <DirectionsService
@@ -105,10 +123,32 @@ function Map() {
               callback={directionsCallback}
             />
           )}
-
           {directions && (
             <div>
-              <DirectionsRenderer directions={directions} />
+              <DirectionsRenderer
+                directions={directions}
+                options={{
+                  suppressMarkers: true,
+                }}
+              />
+
+              {currentPosition && <Marker position={currentPosition} />}
+
+              <Marker
+                position={center}
+                icon={{
+                  path: 0,
+                  scale: 20,
+                  fillColor: "white",
+                  fillOpacity: 1,
+                  strokeColor: "green",
+                  strokeWeight: 4,
+                }}
+                label={{
+                  text: "☕️",
+                  fontSize: "24px",
+                }}
+              />
               <InfoWindow
                 position={getRouteMidpoint(directions)}
                 options={{
@@ -116,8 +156,8 @@ function Map() {
                   headerDisabled: true,
                 }}
               >
-                <div className="flex flex-col gap-2">
-                  <h1 className="text-md font-bold">Estimated travel time:</h1>
+                <div className="flex flex-col items-center gap-2">
+                  <h1 className="text-sm font-bold">Estimated travel time:</h1>
                   <div>🕒 {directions.routes[0]?.legs[0]?.duration?.text}</div>
                   <div>🏁 {directions.routes[0]?.legs[0]?.distance?.text}</div>
                 </div>
