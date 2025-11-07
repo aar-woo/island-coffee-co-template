@@ -40,6 +40,22 @@ async function getCurrentPosition(): Promise<Position> {
   });
 }
 
+function getRouteMidpoint(directions: google.maps.DirectionsResult): Position {
+  const route = directions.routes[0];
+  if (!route) return center;
+
+  const path = route.overview_path;
+  if (!path || path.length === 0) return center;
+
+  const midIndex = Math.floor(path.length / 2);
+  const midPoint = path[midIndex];
+
+  return {
+    lat: midPoint.lat(),
+    lng: midPoint.lng(),
+  };
+}
+
 function Map() {
   const [currentPosition, setCurrentPosition] = useState<Position | null>(null);
   const [directions, setDirections] =
@@ -94,9 +110,9 @@ function Map() {
             <div>
               <DirectionsRenderer directions={directions} />
               <InfoWindow
-                position={directions.routes[0]?.legs[0]?.end_location || center}
+                position={getRouteMidpoint(directions)}
                 options={{
-                  pixelOffset: new google.maps.Size(0, -20),
+                  pixelOffset: new google.maps.Size(0, -10),
                   headerDisabled: true,
                 }}
               >
