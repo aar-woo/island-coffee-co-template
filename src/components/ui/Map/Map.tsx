@@ -131,9 +131,7 @@ function Map() {
                   suppressMarkers: true,
                 }}
               />
-
               {currentPosition && <Marker position={currentPosition} />}
-
               <Marker
                 position={center}
                 icon={{
@@ -156,8 +154,8 @@ function Map() {
                   headerDisabled: true,
                 }}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <h1 className="text-sm font-bold">Estimated travel time:</h1>
+                <div className="flex flex-col items-center gap-2 text-xs md:text-sm">
+                  <h1 className="font-bold">Estimated travel time:</h1>
                   <div>🕒 {directions.routes[0]?.legs[0]?.duration?.text}</div>
                   <div>🏁 {directions.routes[0]?.legs[0]?.distance?.text}</div>
                 </div>
